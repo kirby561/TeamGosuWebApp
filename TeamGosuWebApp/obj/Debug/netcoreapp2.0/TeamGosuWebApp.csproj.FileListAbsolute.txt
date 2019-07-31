@@ -1,0 +1,12 @@
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\bin\Debug\netcoreapp2.0\TeamGosuWebApp.deps.json
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\bin\Debug\netcoreapp2.0\TeamGosuWebApp.runtimeconfig.json
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\bin\Debug\netcoreapp2.0\TeamGosuWebApp.runtimeconfig.dev.json
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\bin\Debug\netcoreapp2.0\TeamGosuWebApp.dll
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\bin\Debug\netcoreapp2.0\TeamGosuWebApp.pdb
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\obj\Debug\netcoreapp2.0\TeamGosuWebApp.csprojResolveAssemblyReference.cache
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\obj\Debug\netcoreapp2.0\TeamGosuWebApp.csproj.CoreCompileInputs.cache
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\obj\Debug\netcoreapp2.0\TeamGosuWebApp.AssemblyInfoInputs.cache
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\obj\Debug\netcoreapp2.0\TeamGosuWebApp.AssemblyInfo.cs
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\obj\Debug\netcoreapp2.0\TeamGosuWebApp.dll
+c:\users\shawn\documents\visual studio 2017\Projects\TeamGosuWebApp\TeamGosuWebApp\obj\Debug\netcoreapp2.0\TeamGosuWebApp.pdb
