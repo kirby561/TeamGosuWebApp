@@ -119,7 +119,7 @@ namespace TeamGosuWebApp.Controllers
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
+              
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
             var email = user.Email;
