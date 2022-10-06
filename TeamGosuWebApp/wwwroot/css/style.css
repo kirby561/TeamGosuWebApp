@@ -185,8 +185,8 @@ ol {
 	top: 10px;
 	background: #aaa;
 	z-index: -2;
-	-webkit-box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.24);
-	box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.24);
+	-webkit-box-shadow: 0 0 9px 3px rgba(30, 30, 228, 0.24);
+	box-shadow: 0 0 9px 3px rgba(30, 30, 228, 0.24);
 }
 
 .site-btn:before {
@@ -353,13 +353,10 @@ ol {
 	font-size: 24px;
 	font-weight: 500;
 	color: #fff;
-	margin: 5px 30px 5px 30px;
+	margin: 5px 40px 5px 40px;
 }
 .menu > div > a:hover {
-	font-size: 24px;
-	font-weight: 500;
 	color: #aaa;
-	margin: 5px 30px 5px 30px;
 }
 
 .site-logo {
@@ -373,10 +370,10 @@ ol {
 .user-panel {
 	display: flex;
 	align-items: center;
-	font-size: 16px;
-	font-weight: 500;
+	font-size: 18px;
+	font-weight: 100;
 	color: #fff;
-	padding: 5px;
+	padding: 5px 10px 5px 10px;
 	justify-content: center;
 }
 
