@@ -539,7 +539,7 @@ ol {
 .text-box p {
 	font-size: 15px;
 	font-weight: 500;
-	color: #68647d;
+	color: #aaa;
 	margin-bottom: 35px;
 }
 
@@ -582,11 +582,11 @@ ol {
 
 .blog-filter li a {
 	display: block;
-	color: #fff;
+	color: #000;
 	padding: 16px 36px;
 	font-size: 16px;
 	font-weight: 700;
-	background: #6f2b95;
+	background: #ffffff;
 	line-height: 1.1;
 	margin-right: 7px;
 	-webkit-transition: all 0.3s;
@@ -666,7 +666,7 @@ ol {
 }
 
 .categories-widget {
-	background: #34164b;
+	background: #060a2e;
 	padding: 55px 0 25px;
 }
 
@@ -799,7 +799,7 @@ ol {
 
 .video-text p {
 	font-size: 18px;
-	color: #a3a1b3;
+	color: #aaaaaa;
 	font-weight: 500;
 	margin-bottom: 0;
 }
@@ -847,7 +847,7 @@ ol {
 }
 
 .featured-box .text-box .top-meta {
-	color: #68647d;
+	color: #aaaaaa;
 }
 
 .featured-box .text-box h3 {
