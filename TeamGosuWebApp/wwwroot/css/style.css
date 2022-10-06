@@ -921,24 +921,21 @@ ol {
 }
 
 .footer-section .container {
-	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	padding: 60px 15px 25px;
 }
 
-.footer-left-pic {
-	position: absolute;
-	left: -13px;
-	bottom: 19px;
-}
-
-.footer-right-pic {
-	position: absolute;
-	right: 50px;
-	bottom: 19px;
-}
-
 .footer-menu {
+	display: flex;
+	flex-direction: row;
 	padding-top: 62px;
+	justify-content: center;
+}
+
+.footer-menu a {
+	padding: 25px;
 }
 
 .footer-menu li:last-child a {
@@ -957,12 +954,11 @@ ol {
 .copyright {
 	font-size: 12px;
 	font-weight: 500;
-	color: #9190a5;
-	opacity: 0.20;
+	color: #ffffff;
 }
 
 .copyright a {
-	color: #9190a5;
+	color: #ffffff;
 }
 
 .copyright a:hover {
