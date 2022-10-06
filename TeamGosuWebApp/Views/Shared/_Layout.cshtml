@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>@ViewData["Title"] - GosuWebpage</title>
+    <title>@ViewData["Title"]</title>
     <meta charset="UTF-8">
     <meta name="description" content="EndGam Gaming Magazine Template">
     <meta name="keywords" content="endGam,gGaming, magazine, html">
@@ -55,30 +55,35 @@
                 <a href="#"><i class="fa fa-dribbble"></i></a>
                 <a href="#"><i class="fa fa-behance"></i></a>
             </div>
-            <div class="header-bar-warp d-flex">
+            <div class="header-bar">
                 <!-- site logo -->
-                <a href="home.html" class="site-logo">
-                    <img src="~/img/logo.png" alt="">
-                </a>
-                <nav class="top-nav-area w-100">
-                    <div class="user-panel">
-                        @await Html.PartialAsync("_LoginPartial")
-                        <!--<a href="">Login</a> / <a href="">Register</a>-->
+                <div class="site-logo">
+                    <a href="Index.html">
+                        <img src="~/img/TeamGosuLogoTransparentSmall.png" alt="">
+                    </a>
+                </div>
+
+                <div class="menu-layout">
+                    <div class="menu">
+                        <div>
+                            <a href="Index.html">Home</a>
+                        </div>
+                        <div>
+                            <a href="Beef.html">Beef Ladder</a>
+                        </div>
+                        <div>
+                            <a href="Players.html">Players</a>
+                        </div>
+                        <div>
+                            <a href="Details.html">Details</a>
+                        </div>
                     </div>
-                    <!-- Menu -->
-                    <ul class="main-menu primary-menu">
-                        <li><a href="home.html">Home</a></li>
-                        <li>
-                            <a href="games.html">Games</a>
-                            <ul class="sub-menu">
-                                <li><a href="game-single.html">Game Singel</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="review.html">Reviews</a></li>
-                        <li><a href="blog.html">News</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
+                </div>
+
+                <div class="user-panel">
+                    @await Html.PartialAsync("_LoginPartial")
+                    <!--<a href="">Login</a> / <a href="">Register</a>-->
+                </div>
             </div>
         </div>
     </header>
@@ -99,7 +104,7 @@
                 </div>
                 
                 <a href="#" class="footer-logo">
-                    <img src="~/img/logo.png" alt="">
+                    <img src="~/img/TeamGosuLogoTransparentSmall.png" alt="">
                 </a>
                 <ul class="main-menu footer-menu">
                     <li><a href="">Home</a></li>
