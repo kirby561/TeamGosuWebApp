@@ -868,17 +868,11 @@ ol {
 
 .gradient-bg,
 .newsletter-section {
-	background: #3e0f3d;
-	/* Old browsers */
-	/* FF3.6-15 */
-	background: -webkit-linear-gradient(left, #3e0f3d 0%, #1c0f3b 100%);
-	/* Chrome10-25,Safari5.1-6 */
-	background: -webkit-gradient(linear, left top, right top, from(#3e0f3d), to(#1c0f3b));
-	background: -o-linear-gradient(left, #3e0f3d 0%, #1c0f3b 100%);
-	background: linear-gradient(to right, #3e0f3d 0%, #1c0f3b 100%);
-	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3e0f3d', endColorstr='#1c0f3b', GradientType=1);
-	/* IE6-9 */
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1b2659+0,3057a5+100 */
+	background: #1b2659; /* Old browsers */
+	background: -moz-linear-gradient(top, #1b2659 0%, #3057a5 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #1b2659 0%,#3057a5 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #1b2659 0%,#3057a5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 /* --------------------
@@ -922,18 +916,11 @@ ol {
 
 .footer-section {
 	text-align: center;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#330d38+0,190d36+100 */
-	background: #330d38;
-	/* Old browsers */
-	/* FF3.6-15 */
-	background: -webkit-linear-gradient(left, #330d38 0%, #190d36 100%);
-	/* Chrome10-25,Safari5.1-6 */
-	background: -webkit-gradient(linear, left top, right top, from(#330d38), to(#190d36));
-	background: -o-linear-gradient(left, #330d38 0%, #190d36 100%);
-	background: linear-gradient(to right, #330d38 0%, #190d36 100%);
-	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#330d38', endColorstr='#190d36', GradientType=1);
-	/* IE6-9 */
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1b2659+0,3057a5+100 */
+	background: #1b2659; /* Old browsers */
+	background: -moz-linear-gradient(top, #1b2659 0%, #3057a5 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #1b2659 0%,#3057a5 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #1b2659 0%,#3057a5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .footer-section .container {
@@ -1030,17 +1017,11 @@ ol {
 
 .games-section {
 	padding: 108px 0;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#501755+0,2d1854+100 */
-	background: #501755;
-	/* Old browsers */
-	/* FF3.6-15 */
-	background: -webkit-linear-gradient(45deg, #501755 0%, #2d1854 100%);
-	/* Chrome10-25,Safari5.1-6 */
-	background: -o-linear-gradient(45deg, #501755 0%, #2d1854 100%);
-	background: linear-gradient(45deg, #501755 0%, #2d1854 100%);
-	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#501755', endColorstr='#2d1854', GradientType=1);
-	/* IE6-9 fallback on horizontal gradient */
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1b2659+0,3057a5+100 */
+	background: #1b2659; /* Old browsers */
+	background: -moz-linear-gradient(top, #1b2659 0%, #3057a5 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #1b2659 0%,#3057a5 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #1b2659 0%,#3057a5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .game-filter {
@@ -1151,17 +1132,11 @@ ol {
 .blog-page,
 .contact-page {
 	padding: 104px 0;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#501755+0,2d1854+100 */
-	background: #501755;
-	/* Old browsers */
-	/* FF3.6-15 */
-	background: -webkit-linear-gradient(45deg, #501755 0%, #2d1854 100%);
-	/* Chrome10-25,Safari5.1-6 */
-	background: -o-linear-gradient(45deg, #501755 0%, #2d1854 100%);
-	background: linear-gradient(45deg, #501755 0%, #2d1854 100%);
-	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#501755', endColorstr='#2d1854', GradientType=1);
-	/* IE6-9 fallback on horizontal gradient */
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1b2659+0,3057a5+100 */
+	background: #1b2659; /* Old browsers */
+	background: -moz-linear-gradient(top, #1b2659 0%, #3057a5 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #1b2659 0%,#3057a5 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #1b2659 0%,#3057a5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .game-single-preview {
