@@ -936,6 +936,12 @@ ol {
 
 .footer-menu a {
 	padding: 25px;
+	color: white;
+}
+
+.footer-menu a:hover {
+	padding: 25px;
+	color: gray;
 }
 
 .footer-menu li:last-child a {

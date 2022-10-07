@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="546px"
+   version="1.1"
+   viewBox="0 0 569 546"
+   width="569px"
+   id="svg10"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs14" />
+  <title
+     id="title2">Patreon logo</title>
+  <g
+     id="g8"
+     style="fill:#ff424d;fill-opacity:1">
+    <circle
+       cx="362.589996"
+       cy="204.589996"
+       data-fill="1"
+       r="204.589996"
+       id="circle4"
+       style="fill:#ff424d;fill-opacity:1" />
+    <rect
+       data-fill="1"
+       height="545.799988"
+       width="100"
+       x="0"
+       y="0"
+       id="rect6"
+       style="fill:#ff424d;fill-opacity:1" />
+  </g>
+  <metadata
+     id="metadata910">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Patreon logo</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
