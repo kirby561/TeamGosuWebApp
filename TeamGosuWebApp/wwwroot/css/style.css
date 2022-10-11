@@ -117,6 +117,7 @@ ol {
 	text-transform: uppercase;
 	font-weight: 700;
 	font-style: italic;
+	color: white;
 }
 
 .set-bg {
@@ -939,6 +940,14 @@ ol {
 	font-family: "Roboto";
 	text-align: right;
 	margin-top: -15px;
+}
+
+.beef-rules {
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-style: italic;
+	color: #fff;
 }
 
 .beef-ladder-container {

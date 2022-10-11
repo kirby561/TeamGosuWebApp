@@ -1,7 +1,7 @@
 ﻿@model BeefModel
 @{
 }
-<section style="padding-top: 200px; min-height: 1500px;" class="intro-section" id="intro-section">
+<section style="padding-top: 200px;" class="intro-section" id="intro-section">
     <div class="container">
         <div class="section-title">
             <div class="beef-ladder-header-container">
@@ -9,6 +9,9 @@
                     <div class="beef-ladder-header">Settle the Beef</div>
                     <div class="beef-ladder-subheader">Team Ladder</div>
                 </div>
+            </div>
+            <div>
+                <a href="#rules" class="beef-rules">Rules  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
             </div>
             <div class="beef-ladder-container">
                 @{
@@ -18,62 +21,84 @@
 
                 <div class="beef-row">
                     @{
-                        int rowEnd = i + rowCount;
-                        @while (i < rowEnd) {
-                            if (i < Model.BeefLadderEntries.Length) {
-                                <div class="beef-entry">
-                                    <div class="beef-entry-name-container">
-                                        <div class="beef-entry-rank">
-                                            @{
-                                                int rank = i + 1;
-                                            }
-                                            @rank
-                                        </div>
-                                        <div class="beef-entry-name">
-                                            @Model.BeefLadderEntries[i].Name
-                                        </div>
-                                        <div class="beef-entry-rank">
-                                            &nbsp;
-                                        </div>
-                                    </div>
-                                    <div class="beef-entry-mmr-race-container">
-                                        <img src="@Model.BeefLadderEntries[i].RaceIconPath" style="margin: 2px; margin-left: -22px; width: 20px; height: 20px;" />
-                                        <span class="beef-entry-mmr">
-                                            @Model.BeefLadderEntries[i].Mmr
-                                        </span>
-                                    </div>
-                                </div>
-                            } else {
-                                <div class="beef-entry">
-                                    <div class="beef-entry-name-container">
-                                        <div class="beef-entry-rank">
-                                            @{
-                                            int rank = i + 1;
-                                            }
-                                            @rank
-                                        </div>
-                                        <div class="beef-entry-name">
-                                            &nbsp;
-                                        </div>
-                                        <div class="beef-entry-rank">
-                                            &nbsp;
-                                        </div>
-                                    </div>
-                                    <div class="beef-entry-mmr-race-container">
-                                        <span class="beef-entry-mmr">
-                                            &nbsp;
-                                        </span>
-                                    </div>
-                                </div>
-                            }
-                            i++;
-                        }
+                    int rowEnd = i + rowCount;
+                    @while (i < rowEnd) {
+                    if (i < Model.BeefLadderEntries.Length) {
+                    <div class="beef-entry">
+                        <div class="beef-entry-name-container">
+                            <div class="beef-entry-rank">
+                                @{
+                                int rank = i + 1;
+                                }
+                                @rank
+                            </div>
+                            <div class="beef-entry-name">
+                                @Model.BeefLadderEntries[i].Name
+                            </div>
+                            <div class="beef-entry-rank">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="beef-entry-mmr-race-container">
+                            <img src="@Model.BeefLadderEntries[i].RaceIconPath" style="margin: 2px; margin-left: -22px; width: 20px; height: 20px;" />
+                            <span class="beef-entry-mmr">
+                                @Model.BeefLadderEntries[i].Mmr
+                            </span>
+                        </div>
+                    </div>
+                    } else {
+                    <div class="beef-entry">
+                        <div class="beef-entry-name-container">
+                            <div class="beef-entry-rank">
+                                @{
+                                int rank = i + 1;
+                                }
+                                @rank
+                            </div>
+                            <div class="beef-entry-name">
+                                &nbsp;
+                            </div>
+                            <div class="beef-entry-rank">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="beef-entry-mmr-race-container">
+                            <span class="beef-entry-mmr">
+                                &nbsp;
+                            </span>
+                        </div>
+                    </div>
+                    }
+                    i++;
+                    }
                     }
                 </div>
 
                 rowCount += 1;
                 }
                 }
+            </div>
+        </div>
+    </div>
+</section>
+<section class="blog-section spad" id="rules">
+    <div class="container">
+        <div class="section-title">
+            <h2>Rules</h2>
+            <div style="display: flex; flex-direction: row; flex-wrap: nowrap; margin: 50px; margin-top: 25px;">
+                <ol style="color: white; font-size: 16px; max-width: 500px; flex-grow: 0; flex-shrink: 0">
+                    <li>Anyone not on the ladder can get on it by challenging someone on the bottom row. If you are 5,000 MMR or higher you can get started by challenging anyone on any row, but once you are placed you can only challenge one row above you. </li>
+                    <li>All challenges must be posted in the #settle-the-beef channel, tagging the person you are challenging.</li>
+                    <li>You have 3 days to accept from the time of the challenge. You have a week after accepting the challenge to play the match or you auto-forfeit your spot. If reporting the auto-forfeit, please reply to the message where you challenged your opponent.</li>
+                    <li>All challenges are Best of 5 unless both players agree to something else. You may switch races in between matches.</li>
+                    <li>The player being challenged chooses the first map.</li>
+                    <li>Once on the ladder you can only challenge someone ahead of you on your own row or the row above you.</li>
+                    <li>Report your wins in the #settle-the-beef channel to have the ladder updated.</li>
+                    <li>You only have to accept a challenge once per week, per opponent. It's up to you if you want to accept more than that.</li>
+                    <li>Each person gets 1 veto at the beginning of the match.</li>
+                    <li>If you forfeit a match, you switch places rather than your opponent going ahead of you.</li>
+                </ol>
+                <img style="margin-left: 50px; flex-basis: 100px; flex-grow: 1; flex-shrink: 1;" src="img/icons/Rules.png" />
             </div>
         </div>
     </div>
