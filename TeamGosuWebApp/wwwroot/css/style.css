@@ -907,6 +907,101 @@ ol {
 	margin-right: 26px;
 }
 
+
+/*---------------------
+  Beef ladder
+-----------------------*/
+.beef-ladder-header-container {
+	display: flex;
+	align-content: center;
+	text-align: center;
+	padding: 0 0 20px 0;
+}
+
+.beef-ladder-header-container-squisher {
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 1;
+	align-content: center;
+	margin: auto;
+}
+
+.beef-ladder-header {
+	color: white;
+	font-size: 48px;
+	font-family: "Roboto";
+	text-align: center;
+}
+
+.beef-ladder-subheader {
+	color: gray;
+	font-size: 20px;
+	font-family: "Roboto";
+	text-align: right;
+	margin-top: -15px;
+}
+
+.beef-ladder-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.beef-entry {
+	display: flex;
+	flex-direction: column;
+	background-color: #ffffff50;
+	height: 60px;
+	width: 150px;
+	border-color: white;
+	border-width: 1px;
+	margin: 5px;
+	padding: 2px;
+	box-shadow: 0 0 9px 3px rgba(30, 30, 228, 0.24);
+}
+
+.beef-entry-name-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.beef-entry-rank {
+	flex-basis: 100px;
+	flex-grow: 1;
+	flex-shrink: 1;
+	padding-left: 3px;
+	padding-right: 3px;
+	color: lightgray;
+	font-weight: 500;
+	font-family: "Roboto";
+}
+
+.beef-entry-name {
+	color: white;
+	font-weight: 500;
+	font-family: "Roboto";
+	flex-grow: 0;
+	flex-shrink: 1;
+}
+
+.beef-entry-mmr-race-container {
+	text-align: center;
+}
+
+.beef-entry-mmr {
+	color: lightgray;
+	font-weight: 100;
+	font-family: "Roboto";
+}
+
+.beef-row {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	white-space: nowrap;
+	flex-grow: 1;
+	flex-basis: 100%;
+}
+
 /* ----------------
   Footer section
 ---------------------*/
