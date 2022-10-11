@@ -1011,6 +1011,26 @@ ol {
 	flex-basis: 100%;
 }
 
+.beef-rules-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	margin: 50px;
+	margin-top: 25px;
+}
+
+.beef-rules-list {
+	color: white;
+	font-size: 16px;
+	max-width: 500px;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+.beef-rules-list li {
+	margin-top: 15px;
+}
+
 /* ----------------
   Footer section
 ---------------------*/
