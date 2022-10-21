@@ -557,8 +557,23 @@ ol {
 }
 
 /* ----------------
- Blog Section
+ News Section
 ---------------------*/
+
+.news-pages-list-container {
+	color: #999;
+}
+
+.news-pages-list-entry {
+	padding: 5px;
+	color: #999;
+}
+
+.news-pages-list-entry-current {
+	padding: 5px;
+	color: white;
+	font-weight: 900;
+}
 
 .blog-section {
 	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1b2659+0,3057a5+100 */

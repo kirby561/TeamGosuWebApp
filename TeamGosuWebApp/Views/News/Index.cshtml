@@ -1,4 +1,6 @@
-﻿@{ ViewData["Title"] = "News Page"; }
+﻿@{
+    ViewData["Title"] = "News Page";
+}
 @model NewsModel
 @using TeamGosuWebApp.Models
 
@@ -10,25 +12,58 @@
                 <div class="section-title text-white">
                     <h2>News</h2>
                 </div>
+                <div class="news-pages-list-container">
+                    @{
+                        int leftPage = Math.Max(Model.GetCurrentPage() - 1, 1);
+                        int rightPage = Math.Min(Model.GetNumPages(), Model.GetCurrentPage() + 1);
+                    }
+                    <a href="/News?page=@leftPage" class="news-pages-list-entry"><img src="~/img/icons/arrow-left.png" alt="#" /></a>
+
+                    @for (int pageNumber = 1; pageNumber < Model.GetNumPages() + 1; pageNumber++) {
+                        if (pageNumber == Model.GetCurrentPage())
+                        {
+                                    <a href="/News?page=@pageNumber" class="news-pages-list-entry-current">@pageNumber</a>
+                        }
+                        else
+                        {
+                            <a href="/News?page=@pageNumber" class="news-pages-list-entry">@pageNumber</a>
+                        }
+                    }
+
+                    <a href="/News?page=@rightPage" class="news-pages-list-entry"><img src="~/img/icons/arrow-right.png" alt="#" /></a>
+                </div>
                 @{
                     foreach (NewsStory story in Model.GetStoriesOnPage()) {
                         String uiPublishDate = Model.GetUiPublishDate(story);
 
-                        <div class="blog-item">
-                            <div class="blog-thumb">
-                                <img src="@story.ImageUrl" alt="">
-                            </div>
-                            <div class="blog-text text-box text-white">
-                                <div class="top-meta">@uiPublishDate</div>
-                                <h3>@story.Title</h3>
-                                <p>@story.Content</p>
-                                @if (story.DetailsUrl != null) {
-                                    <a href="@story.DetailsUrl" class="read-more">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+                                <div class="blog-item">
+                                    <div class="blog-thumb">
+                                        <img src="@story.ImageUrl" alt="">
+                                    </div>
+                                    <div class="blog-text text-box text-white">
+                                        <div class="top-meta">@uiPublishDate</div>
+                                        <h3>@story.Title</h3>
+                                        <p>@story.Content</p>
+                                        @if (story.DetailsUrl != null) {
+                                            <a href="@story.DetailsUrl" class="read-more">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
                                 }
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
                     }
                 }
+                <div style="padding-top: 200px;" class="news-pages-list-container">
+                    <a href="/News?page=@leftPage" class="news-pages-list-entry"><img src="~/img/icons/arrow-left.png" alt="#" /></a>
+
+                    @for (int pageNumber = 1; pageNumber < Model.GetNumPages() + 1; pageNumber++) {
+                        if (pageNumber == Model.GetCurrentPage()) {
+                            <a href="/News?page=@pageNumber" class="news-pages-list-entry-current">@pageNumber</a>
+                        } else {
+                            <a href="/News?page=@pageNumber" class="news-pages-list-entry">@pageNumber</a>
+                        }
+                    }
+
+                    <a href="/News?page=@rightPage" class="news-pages-list-entry"><img src="~/img/icons/arrow-right.png" alt="#" /></a>
+                </div>
             </div>
         </div>
     </div>

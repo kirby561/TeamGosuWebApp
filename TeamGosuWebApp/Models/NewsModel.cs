@@ -6,7 +6,7 @@ using TeamGosuWebApp.Utility;
 
 namespace TeamGosuWebApp.Models {
     public class NewsModel : PageModel {
-        private const int StoriesPerPage = 10;
+        private const int StoriesPerPage = 3;
         private NewsManager _newsManager;
         private int _page;
 
@@ -20,6 +20,10 @@ namespace TeamGosuWebApp.Models {
 
         public int GetNumPages() {
             return (int)Math.Ceiling(Convert.ToDecimal(_newsManager.GetNumNewsStories()) / Convert.ToDecimal(StoriesPerPage));
+        }
+
+        public int GetCurrentPage() {
+            return _page;
         }
 
         public List<NewsStory> GetStoriesOnPage() {
