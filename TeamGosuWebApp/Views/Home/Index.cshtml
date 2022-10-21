@@ -1,6 +1,6 @@
 ﻿@{ ViewData["Title"] = "Home Page"; }
-
-
+@model HomeModel
+@using TeamGosuWebApp.Models
 
 <!-- Header section end -->
 <!-- Hero section -->
@@ -71,7 +71,7 @@
     </div>
 </section>
 <!-- Intro section end -->
-<!-- Blog section -->
+<!-- News section -->
 <section class="blog-section spad">
     <div class="container">
         <div class="row">
@@ -79,41 +79,28 @@
                 <div class="section-title text-white">
                     <h2>Recent Results</h2>
                 </div>
-                <!-- Blog item -->
-                <div class="blog-item">
-                    <div class="blog-thumb">
-                        <img src="~/img/news/2022-vtl-finals-bracket.png" alt="">
-                    </div>
-                    <div class="blog-text text-box text-white">
-                        <div class="top-meta">Oct. 5th 2022</div>
-                        <h3>Gosu finishes 4th in VTL</h3>
-                        <p>Our VTL team finshed fourth in Season 11 of VTL! Our team had a strong season winning 4 of 7 matches in the group stage with a map score of 25-20.</p>
-                        <a href="https://liquipedia.net/starcraft2/User:Clinch09/Validity_Team_League_Season_11:_Playoffs" class="read-more">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
-                    </div>
-                </div>
-                <!-- Blog item -->
-                <div class="blog-item">
-                    <div class="blog-thumb">
-                        <img src="~/img/news/2022-DH-SC2-Master.png" alt="">
-                    </div>
-                    <div class="blog-text text-box text-white">
-                        <div class="top-meta">Sept. 13th 2022</div>
-                        <h3>Reaper qualifies for Dreamhack NA Regional</h3>
-                        <p>The very talented Reaper, a recent addition to Team Gosu Pro, has qualified for the Dreamhack Atlanta NA Regional on the 13th. He will be in Group B up against Nina in the first round of the group stage on October 4th, 2022!</p>
-                        <a href="https://liquipedia.net/starcraft2/ESL_Pro_Tour/2022/23/Masters/Atlanta/Regionals/NA" class="read-more">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
-                    </div>
-                </div>
-                <!-- Blog item -->
-                <div class="blog-item">
-                    <div class="blog-thumb">
-                        <img src="~/img/news/TeamGosuLogoTransparent.png" alt="">
-                    </div>
-                    <div class="blog-text text-box text-white">
-                        <div class="top-meta">Sept. 4th 2022</div>
-                        <h3>Team Gosu launches a pro team</h3>
-                        <p>We're proud to announce that Team Gosu will now have a pro team competing at the highest levels of Starcraft 2. The roster is just getting going, stay tuned for more updates!</p>
-                    </div>
-                </div>
+                @{
+                    foreach (NewsStory story in Model.GetLatestStories()) {
+                        String uiPublishDate = Model.GetUiPublishDate(story);
+
+                        <div class="blog-item">
+                            <div class="blog-thumb">
+                                <img src="@story.ImageUrl" alt="">
+                            </div>
+                            <div class="blog-text text-box text-white">
+                                <div class="top-meta">@uiPublishDate</div>
+                                <h3>@story.Title</h3>
+                                <p>@story.Content</p>
+                                @if (story.DetailsUrl != null) {
+                                    <a href="@story.DetailsUrl" class="read-more">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="text-white">
+                <h2><a href="/News" class="read-more">All News  <img src="~/img/icons/double-arrow.png" alt="#" /></a></h2>
             </div>
         </div>
     </div>

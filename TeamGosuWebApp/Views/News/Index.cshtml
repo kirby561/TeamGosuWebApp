@@ -1,0 +1,35 @@
+﻿@{ ViewData["Title"] = "News Page"; }
+@model NewsModel
+@using TeamGosuWebApp.Models
+
+<!-- News section -->
+<section class="blog-section spad" style="padding-top: 200px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-8 col-md-7">
+                <div class="section-title text-white">
+                    <h2>News</h2>
+                </div>
+                @{
+                    foreach (NewsStory story in Model.GetStoriesOnPage()) {
+                        String uiPublishDate = Model.GetUiPublishDate(story);
+
+                        <div class="blog-item">
+                            <div class="blog-thumb">
+                                <img src="@story.ImageUrl" alt="">
+                            </div>
+                            <div class="blog-text text-box text-white">
+                                <div class="top-meta">@uiPublishDate</div>
+                                <h3>@story.Title</h3>
+                                <p>@story.Content</p>
+                                @if (story.DetailsUrl != null) {
+                                    <a href="@story.DetailsUrl" class="read-more">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>

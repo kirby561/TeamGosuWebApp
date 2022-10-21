@@ -912,6 +912,15 @@ ol {
 /*---------------------
   Beef ladder
 -----------------------*/
+@keyframes beef-row-animate-in {
+	from { 
+		margin-top: 500px; 
+	}
+	to { 
+		margin-top: 0px;
+	}
+}
+
 .beef-ladder-header-container {
 	display: flex;
 	align-content: center;
@@ -1009,6 +1018,8 @@ ol {
 	white-space: nowrap;
 	flex-grow: 1;
 	flex-basis: 100%;
+	animation-name: beef-row-animate-in;
+	animation-duration: 1.5s;
 }
 
 .beef-rules-container {

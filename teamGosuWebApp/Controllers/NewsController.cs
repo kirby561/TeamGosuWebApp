@@ -9,26 +9,18 @@ using TeamGosuWebApp.Services;
 
 namespace TeamGosuWebApp.Controllers
 {
-    public class HomeController : Controller
-    {
+    public class NewsController : Controller {
         private NewsManager _newsManager;
 
-        public HomeController(NewsManager newsManager) {
+        public NewsController(NewsManager newsManager) {
             _newsManager = newsManager;
         }
 
-        public IActionResult Index() {
-            return View(new HomeModel(_newsManager));
+        public IActionResult Index(int page = 1) {
+            return View(new NewsModel(_newsManager, page));
         }
 
-        public IActionResult Beef() {
-            ViewData["Message"] = "Your beef page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
+        public IActionResult Error() {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

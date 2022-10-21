@@ -12,13 +12,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TeamGosuWebApp.Data;
 using TeamGosuWebApp.Models;
+using TeamGosuWebApp.Services;
 
 namespace TeamGosuWebApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IHostingEnvironment _hostingEnvironment;
+
+        public Startup(IHostingEnvironment hostingEnvironment, IConfiguration configuration)
         {
+            _hostingEnvironment = hostingEnvironment;
             Configuration = configuration;
         }
 
@@ -37,6 +41,9 @@ namespace TeamGosuWebApp
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            
+            NewsManager newsManager = new NewsManager(_hostingEnvironment.WebRootPath + "/news", _hostingEnvironment.WebRootPath);
+            services.AddSingleton<NewsManager>(newsManager);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
