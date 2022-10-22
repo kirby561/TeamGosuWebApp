@@ -1,4 +1,6 @@
-﻿@{ ViewData["Title"] = "Home Page"; }
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
 @model HomeModel
 @using TeamGosuWebApp.Models
 
@@ -77,22 +79,28 @@
         <div class="row">
             <div class="col-xl-9 col-lg-8 col-md-7">
                 <div class="section-title text-white">
-                    <h2>Recent Results</h2>
+                    <h2>Recent Stuff</h2>
                 </div>
                 @{
+                    bool isFirstStory = true;
                     foreach (NewsStory story in Model.GetLatestStories()) {
                         String uiPublishDate = Model.GetUiPublishDate(story);
+                        if (!isFirstStory) {
+                            <div class="white-divider-line"></div>
+                        } else {
+                            isFirstStory = false;
+                        }
 
-                        <div class="blog-item">
-                            <div class="blog-thumb">
+                        <div class="news-story-container">
+                            <div class="news-story-image-container">
                                 <img src="@story.ImageUrl" alt="">
                             </div>
-                            <div class="blog-text text-box text-white">
-                                <div class="top-meta">@uiPublishDate</div>
-                                <h3>@story.Title</h3>
-                                <p>@story.Content</p>
+                            <div class="news-story-text-container">
+                                <div class="news-story-date">@uiPublishDate</div>
+                                <h3 class="news-story-title">@story.Title</h3>
+                                <p class="news-story-content">@story.Content</p>
                                 @if (story.DetailsUrl != null) {
-                                    <a href="@story.DetailsUrl" class="read-more">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+                                    <a href="@story.DetailsUrl" class="read-more text-white">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
                                 }
                             </div>
                         </div>

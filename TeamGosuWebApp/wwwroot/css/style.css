@@ -390,6 +390,14 @@ ol {
 	display: none;
 }
 
+.white-divider-line {
+	height: 1px;
+	width: 80%;
+	background-color: #aaa;
+	opacity: 30%;
+	margin: auto;
+}
+
 /*------------------
   Hero section
 ---------------------*/
@@ -562,6 +570,7 @@ ol {
 
 .news-pages-list-container {
 	color: #999;
+	text-align: center;
 }
 
 .news-pages-list-entry {
@@ -573,6 +582,42 @@ ol {
 	padding: 5px;
 	color: white;
 	font-weight: 900;
+}
+
+.news-story-container {
+	display: inline-flex;
+	margin: 25px;
+}
+
+.news-story-image-container {
+	flex-basis: 300px;
+	flex-grow: 0;
+	flex-shrink: 0;
+	margin: 25px;
+}
+
+.news-story-content-container {
+	flex-basis: auto;
+	flex-grow: 1;
+	flex-shrink: 1;
+	margin: 25px;
+}
+
+.news-story-date {
+	margin: 5px;
+	color: white;
+	font-style: italic;
+	font-size: 18px;
+}
+
+.news-story-title {
+	margin-top: 25px;
+	margin-bottom: 10px;
+	color: white;
+}
+
+.news-story-content {
+	color: #ccc;
 }
 
 .blog-section {
@@ -616,12 +661,11 @@ ol {
 }
 
 .blog-item {
-	margin-top: 86px;
+	margin-top: 43px;
 }
 
 .blog-item .blog-thumb {
 	width: 362px;
-	float: left;
 	margin-right: 30px;
 }
 

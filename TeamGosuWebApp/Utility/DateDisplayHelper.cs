@@ -22,7 +22,7 @@ namespace TeamGosuWebApp.Utility {
             int year = date.Year;
             int month = date.Month;
             int day = date.Day;
-            return MonthStrings[month] + " " + day + GetDayOfMonthSuffix(day) + " " + year;
+            return MonthStrings[month - 1] + " " + day + GetDayOfMonthSuffix(day) + " " + year;
         }
 
         public static String GetDayOfMonthSuffix(int day) {

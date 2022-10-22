@@ -8,7 +8,7 @@
 <section class="blog-section spad" style="padding-top: 200px;">
     <div class="container">
         <div class="row">
-            <div class="col-xl-9 col-lg-8 col-md-7">
+            <div>
                 <div class="section-title text-white">
                     <h2>News</h2>
                 </div>
@@ -33,25 +33,32 @@
                     <a href="/News?page=@rightPage" class="news-pages-list-entry"><img src="~/img/icons/arrow-right.png" alt="#" /></a>
                 </div>
                 @{
+                    bool isFirstStory = true;
                     foreach (NewsStory story in Model.GetStoriesOnPage()) {
                         String uiPublishDate = Model.GetUiPublishDate(story);
+                        if (!isFirstStory) {
+                                <div class="white-divider-line"></div>
+                        } else {
+                            isFirstStory = false;
+                        }
 
-                                <div class="blog-item">
-                                    <div class="blog-thumb">
-                                        <img src="@story.ImageUrl" alt="">
-                                    </div>
-                                    <div class="blog-text text-box text-white">
-                                        <div class="top-meta">@uiPublishDate</div>
-                                        <h3>@story.Title</h3>
-                                        <p>@story.Content</p>
-                                        @if (story.DetailsUrl != null) {
-                                            <a href="@story.DetailsUrl" class="read-more">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
-                                }
-                                    </div>
-                                </div>
+                        <div class="news-story-container">
+                             <div class="news-story-image-container">
+                                 <img src="@story.ImageUrl" alt="">
+                             </div>
+                             <div class="news-story-text-container">
+                                 <div class="news-story-date">@uiPublishDate</div>
+                                 <h3 class="news-story-title">@story.Title</h3>
+                                 <p class="news-story-content">@story.Content</p>
+                                 @if (story.DetailsUrl != null) {
+                                     <a href="@story.DetailsUrl" class="read-more text-white">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+                                 }
+                             </div>
+                        </div>
                     }
                 }
-                <div style="padding-top: 200px;" class="news-pages-list-container">
+
+                <div class="news-pages-list-container">
                     <a href="/News?page=@leftPage" class="news-pages-list-entry"><img src="~/img/icons/arrow-left.png" alt="#" /></a>
 
                     @for (int pageNumber = 1; pageNumber < Model.GetNumPages() + 1; pageNumber++) {
