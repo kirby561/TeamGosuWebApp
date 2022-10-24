@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.FileSystemGlobbing;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using TeamGosuWebApp.Models;
 
 namespace TeamGosuWebApp.Services {
@@ -23,11 +25,16 @@ namespace TeamGosuWebApp.Services {
         private String _wwwRoot;
 
         private List<NewsStory> _newsStories;
+
+        private FileSystemWatcher _watcher;
+        private Timer _antiSpamTimer = null;
+        private object _antiSpamTimerLock = new object();
         
         public NewsManager(string newsPath, string wwwRoot) {
             _newsPath = newsPath;
             _wwwRoot = wwwRoot;
             LoadNews();
+            MonitorNewsDirectory();
         }
 
         public int GetNumNewsStories() {
@@ -38,13 +45,62 @@ namespace TeamGosuWebApp.Services {
             return _newsStories[index];
         }
 
+        private void MonitorNewsDirectory() {
+            _watcher = new FileSystemWatcher();
+            _watcher.Path = _newsPath;
+            _watcher.Filter = "*";
+            _watcher.IncludeSubdirectories = true;
+            _watcher.NotifyFilter = 
+                NotifyFilters.LastAccess | 
+                NotifyFilters.LastWrite | 
+                NotifyFilters.FileName | 
+                NotifyFilters.DirectoryName;
+
+            _watcher.Changed += new FileSystemEventHandler(OnFileOrDirectoryChanged);
+            _watcher.Created += new FileSystemEventHandler(OnFileOrDirectoryChanged);
+            _watcher.Deleted += new FileSystemEventHandler(OnFileOrDirectoryChanged);
+            _watcher.Renamed += new RenamedEventHandler(OnFileOrDirectoryRenamed);
+
+            _watcher.EnableRaisingEvents = true;
+        }
+
+        private void OnFileOrDirectoryChanged(object sender, FileSystemEventArgs args) {
+            Console.WriteLine("News directory changed. Thread = " + Thread.CurrentThread.ManagedThreadId);
+            // Start a timer to update news articles in 1 minute.
+            // Reset this timer each time this is called so we aren't spamming the loading process.
+            lock (_antiSpamTimerLock) {
+                if (_antiSpamTimer != null) {
+                    _antiSpamTimer.Dispose();
+                    _antiSpamTimer = null;
+                }
+                _antiSpamTimer = new Timer(OnAntiSpamNewsTimerExpired, null, 60000, Timeout.Infinite);
+            }
+        }
+
+        private void OnFileOrDirectoryRenamed(object sender, RenamedEventArgs args) {
+            OnFileOrDirectoryChanged(sender, null);
+        }
+
+        private void OnAntiSpamNewsTimerExpired(object state) {
+            Console.WriteLine("Timer expired. Thread = " + Thread.CurrentThread.ManagedThreadId);
+            lock (_antiSpamTimerLock) {
+                _antiSpamTimer.Dispose();
+                _antiSpamTimer = null;
+            }
+
+            LoadNews();
+        }
+
         private void LoadNews() {
+            Console.WriteLine("Loading news stories...");
+            DateTime beforeTime = DateTime.Now;
+
             int wwwRootIndex = _newsPath.IndexOf(_wwwRoot);;
             if (wwwRootIndex != 0)
                 throw new ArgumentException("The news path needs to be in wwwroot somewhere.");
             String wwwPrefix = _newsPath.Substring(_wwwRoot.Length + 1);
 
-            _newsStories = new List<NewsStory>();
+            List<NewsStory> newsStories = new List<NewsStory>();
             foreach (String directory in Directory.EnumerateDirectories(_newsPath)) {
                 String subPath = directory.Substring(_newsPath.Length + 1);
 
@@ -76,7 +132,7 @@ namespace TeamGosuWebApp.Services {
                         DetailsUrl = info.DetailsUrl
                     };
 
-                    _newsStories.Add(story);
+                    newsStories.Add(story);
                 } catch (Exception e) {
                     Console.WriteLine("Error reading news story " + directory + ".\n" + e.Message);
                     continue;
@@ -84,7 +140,17 @@ namespace TeamGosuWebApp.Services {
             }
 
             // Sort the stories
-            _newsStories.Sort(new NewsStorySorter());
+            newsStories.Sort(new NewsStorySorter());
+            
+            // This operation is atomic in C#.
+            // However, care needs to be taken that if the size of the
+            // news stories list changes, other threads using it are prepared
+            // for the list to change suddenly.
+            _newsStories = newsStories;
+
+            DateTime afterTime = DateTime.Now;
+            TimeSpan timeSpan = afterTime - beforeTime;
+            Console.WriteLine("...Finished loading news stories. It took " + timeSpan.TotalMilliseconds + "ms");
         }
     }
 

@@ -22,7 +22,7 @@
                     @for (int pageNumber = 1; pageNumber < Model.GetNumPages() + 1; pageNumber++) {
                         if (pageNumber == Model.GetCurrentPage())
                         {
-                                    <a href="/News?page=@pageNumber" class="news-pages-list-entry-current">@pageNumber</a>
+                            <a href="/News?page=@pageNumber" class="news-pages-list-entry-current">@pageNumber</a>
                         }
                         else
                         {

@@ -565,6 +565,83 @@ ol {
 }
 
 /* ----------------
+ Teams Section
+---------------------*/
+.teams-name-link a {
+	font-size: 24px;
+	color: gray;
+}
+
+.teams-name-link a:hover {
+	color: white;
+}
+
+.teams-name-link-selected a {
+	font-size: 24px;
+	color: white;
+}
+
+.teams-name-link-selected a:hover {
+	font-size: 24px;
+	color: white;
+}
+
+.team-link-container {
+	text-align: center;
+}
+
+.teams-name-link-divider {
+	font-size: 24px;
+	font-weight: 700;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.teams-table-column-header {
+	font-weight: 700;
+	padding: 5px;
+}
+
+.teams-table-header-divider {
+	height: 1px;
+	width: 100%;
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 0px;
+}
+
+.teams-table {
+	display: inline-flex;
+	margin-top: 20px;
+	width: 100%;
+	max-width: 100%;
+}
+
+.teams-table-column-auto {
+	flex-basis: auto;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+.teams-table-column-resizable {
+	flex-basis: auto;
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+
+.teams-table-cell {
+	padding: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.teams-table-cell a:hover {
+	color: gray;
+}
+
+/* ----------------
  News Section
 ---------------------*/
 
@@ -590,15 +667,17 @@ ol {
 }
 
 .news-story-image-container {
-	flex-basis: 300px;
-	flex-grow: 0;
+	flex-basis: 25%;
+	flex-grow: 1;
 	flex-shrink: 0;
 	margin: 25px;
+	max-width: 300px;
+	text-align: center;
 }
 
 .news-story-content-container {
 	flex-basis: auto;
-	flex-grow: 1;
+	flex-grow: 3;
 	flex-shrink: 1;
 	margin: 25px;
 }

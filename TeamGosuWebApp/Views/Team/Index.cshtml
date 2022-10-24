@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Teams Page";
+}
+@model TeamPageModel
+@using TeamGosuWebApp.Models
+
+<!-- News section -->
+@{
+    List<Team> teams = Model.GetTeams();
+    int selectedTeamIndex = Model.GetSelectedTeamIndex();
+    if (selectedTeamIndex < 0 || selectedTeamIndex > teams.Count) {
+        selectedTeamIndex = 0;
+    }
+    Team selectedTeam = teams[selectedTeamIndex];
+
+    <section class="blog-section spad" style="padding-top: 200px;">
+        <div class="container">
+            <div class="row">
+                <div style="width: 100%">
+                    <div class="section-title text-white">
+                        <h2>Teams</h2>
+                    </div>
+                    <div class="section-title text-white">
+                        @{
+                            bool isFirst = true;
+                            int teamIndex = 0;
+                            <div class="team-link-container">
+                                @foreach (Team team in teams) {
+                                    if (isFirst) {
+                                        isFirst = false;
+                                    } else {
+                                        <span class="teams-name-link-divider">|</span>
+                                    }
+                                    if (teamIndex == selectedTeamIndex) {
+                                        <span class="teams-name-link-selected"><a href="/Team?team=@teamIndex">@team.Name</a></span>
+                                    } else {
+                                        <span class="teams-name-link"><a href="/Team?team=@teamIndex">@team.Name</a></span>
+                                    }
+
+                                    teamIndex++;
+                                }
+                            </div>
+
+                            <div class="teams-table">
+                                <span class="teams-table-column-auto">
+                                    <div class="teams-table-column-header">
+                                        Name
+                                    </div>
+                                    <hr class="teams-table-header-divider" />
+                                    @foreach (Player player in selectedTeam.Players) {
+                                        <div class="teams-table-cell">@player.Name</div>
+                                    }
+                                </span>
+                                <span class="teams-table-column-auto">
+                                    <div class="teams-table-column-header">
+                                        Race
+                                    </div>
+                                    <hr class="teams-table-header-divider" />
+                                    @foreach (Player player in selectedTeam.Players) {
+                                        <div class="teams-table-cell">@player.Race</div>
+                                    }
+                                </span>
+                                <span class="teams-table-column-auto">
+                                    <div class="teams-table-column-header">
+                                        League
+                                    </div>
+                                    <hr class="teams-table-header-divider" />
+                                    @foreach (Player player in selectedTeam.Players) {
+                                        <div class="teams-table-cell">@player.League</div>
+                                    }
+                                </span>
+                                <span class="teams-table-column-resizable">
+                                    <div class="teams-table-column-header">
+                                        Battle.net
+                                    </div>
+                                    <hr class="teams-table-header-divider" />
+                                    @foreach (Player player in selectedTeam.Players) {
+                                        <div class="teams-table-cell"><a href="@player.BattleNetUrl">@player.BattleNetUrl</a></div>
+                                    }
+                                </span>
+                                <span class="teams-table-column-resizable">
+                                    <div class="teams-table-column-header">
+                                        Aligulac
+                                    </div>
+                                    <hr class="teams-table-header-divider" />
+                                    @foreach (Player player in selectedTeam.Players) {
+                                        string aligulac = player.Aligulac;
+                                        if (!String.IsNullOrWhiteSpace(aligulac)) {
+                                                    <div class="teams-table-cell"><a href="@player.Aligulac">@player.Aligulac</a></div>
+                                        } else {
+                                                    <div class="teams-table-cell">N/A</div>
+                                        }
+                                    }
+                                </span>
+                            </div>
+                          }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

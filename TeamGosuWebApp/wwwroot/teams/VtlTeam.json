@@ -1,0 +1,90 @@
+{
+	"Priority": 1,
+	"Name": "VTL",
+	"Players": [
+		{
+			"Name": "Dezzy",
+			"Race": "Protoss",
+			"League": "Platinum 1",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/11155814",
+			"Aligulac": null
+		},
+		{
+			"Name": "Moglie",
+			"Race": "Protoss",
+			"League": "Diamond 2",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/10326448",
+			"Aligulac": null
+		},
+		{
+			"Name": "Reach",
+			"Race": "Protoss",
+			"League": "Diamond 2",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/3730441",
+			"Aligulac": null
+		},
+		{
+			"Name": "Bum",
+			"Race": "Protoss",
+			"League": "Diamond 2",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/3826759",
+			"Aligulac": null
+		},
+		{
+			"Name": "Noahfecks",
+			"Race": "Terran",
+			"League": "Diamond 2",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/1083297",
+			"Aligulac": null
+		},
+		{
+			"Name": "Rolch",
+			"Race": "Terran",
+			"League": "Diamond 2",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/6831435",
+			"Aligulac": null
+		},
+		{
+			"Name": "Funny",
+			"Race": "Zerg",
+			"League": "Diamond 2",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/8013817",
+			"Aligulac": null
+		},
+		{
+			"Name": "DeadRemus",
+			"Race": "Zerg",
+			"League": "Diamond 1",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/3509753",
+			"Aligulac": null
+		},
+		{
+			"Name": "OtterFamily",
+			"Race": "Zerg",
+			"League": "Diamond 1",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/5764283",
+			"Aligulac": null
+		},
+		{
+			"Name": "Parmigiano",
+			"Race": "Zerg",
+			"League": "Diamond 1",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/420936",
+			"Aligulac": null
+		},
+		{
+			"Name": "Kirby",
+			"Race": "Terran",
+			"League": "Diamond 1",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/1986271",
+			"Aligulac": "http://aligulac.com/players/21591-kirby/"
+		},
+		{
+			"Name": "SimplePickUp",
+			"Race": "Zerg",
+			"League": "Masters 3",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/1063020",
+			"Aligulac": "http://aligulac.com/players/21060-SimplePickUp/"
+		}
+	]
+}
