@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-TeamGosuWebApp-A4A3C117-8FEC-4D3D-9FA8-C0C9B279ECFB</UserSecretsId>
     <StartupObject>TeamGosuWebApp.Program</StartupObject>
+    <ApplicationIcon>wwwroot\img\TeamGosuIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
