@@ -18,18 +18,27 @@ The project is written in C# based off dotnet 5. To build it:
 2. Make sure your issue is opened to you.
 3. Implement your change following the coding conventions in this readme.
 4. Submit a pull request for review.
+> Pull requests should generally contain a single commit based off the head of the target branch.
+> For special circumstances, multiple commits  and/or merge commits will be allowed. There are two cases this may be necessary:
+> 	a. A long running feature branch with many commits is being merged in.
+> 	b. There are many renamed files and it's easier to review the commit if the renames are separate from the content changes.
+>   The commits should be prefixed with "Issue#:" and have a good description of the change. For example:
+>
+>		Issue2: Fixed a thing by implementing the fix in this cool way. The root cause was some insightful thing and this fixes it because of this reason.
+>
 5. Iterate on feedback as needed.
+6. The issue should be closed with the commit (s) that implemented the change and the testing that was done.
 
 ## Coding Conventions
 Follow mainstream C# coding conventions at https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions 
 with the following exceptions:
 1. Private/Protected member variables should be prefixed with "_" (for example: _someMemberVariable). This makes them stick out in diff tools and prevents shadowing.
 2. Compact bracing is preferred rather than a brace being on its own line. For example:
->	if (...) {
->		...
->	} else {
->		...
->	}
+>	if (...) {<br>
+>	  ...<br>
+>	} else {<br>
+>	  ...<br>
+>	}<br>
 
 ## Icon Credits:
 	Rules icon - [Rules icons created by Kiranshastry - Flaticon](https://www.flaticon.com/free-icons/rules)
