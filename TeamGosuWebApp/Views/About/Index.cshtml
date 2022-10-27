@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+@model AboutModel
+@using TeamGosuWebApp.Models
+
+<!-- About section -->
+
+<section class="about-section spad" style="padding-top: 200px;">
+    <div class="container">
+        <div class="about-container">
+             <div class="about-logo-container">
+                 <img src="/img/TeamGosuLogoTransparent.png" class="about-logo" />
+             </div>
+             <div class="about-description">
+                <h2 class="about-section-title">About Team Gosu</h2>
+                <div class="about-text">We are a Starcraft 2 clan mostly based in NA. Most coordination is done through our discord so if you're interested in learning more about the team, joining, or have questions, join our discord at <a href="https://discord.teamgosu.gg/">https://discord.teamgosu.gg/</a>. The team is always recruiting at all levels so if you're interested in joining, ping one of the admins in that discord. Team members can participate in leagues that Gosu competes in, tournaments that we put on, our internal Beef Ladder, and be part of a thriving Starcraft 2 community.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Credits section -->
+
+<section class="credits-section spad">
+    <div class="container">
+       <div class="section-title text-white">
+           <h2>Credits</h2>
+       </div>
+       <div class="about-text">
+           This site uses icons and resources from the following sources:
+       </div>
+        <div class="about-text">
+            Rules icon - <a href="https://www.flaticon.com/free-icons/rules" title="rules icons">Rules icons created by Kiranshastry - Flaticon</a>
+        </div>
+    </div>
+</section>
+
+<section class="about-section spad">
+    <div class="container">
+        <div class="section-title text-white">
+            <h2 style="margin-bottom: 20px;">Site</h2>
+        </div>
+        <div class="about-text">
+            @Model.GetAppNameVersion()
+        </div>
+        <div class="about-text">
+            Report Issues at: <a href="https://github.com/kirby561/TeamGosuWebApp/issues">https://github.com/kirby561/TeamGosuWebApp/issues</a>
+        </div>
+    </div>
+</section>

@@ -9,8 +9,7 @@ using TeamGosuWebApp.Services;
 
 namespace TeamGosuWebApp.Controllers
 {
-    public class HomeController : Controller
-    {
+    public class HomeController : Controller {
         private NewsManager _newsManager;
 
         public HomeController(NewsManager newsManager) {
@@ -19,12 +18,6 @@ namespace TeamGosuWebApp.Controllers
 
         public IActionResult Index() {
             return View(new HomeModel(_newsManager));
-        }
-
-        public IActionResult Beef() {
-            ViewData["Message"] = "Your beef page.";
-
-            return View();
         }
 
         public IActionResult Error()
