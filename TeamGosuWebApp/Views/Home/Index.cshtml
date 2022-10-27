@@ -6,38 +6,34 @@
 
 <!-- Header section end -->
 <!-- Hero section -->
-<section class="hero-section overflow-hidden">
+<section class="hero-section overflow-hidden" style="background-image: url('img/TeamGosuCloudBackground.png');">
     <div class="hero-slider owl-carousel">
-        <div class="hero-item set-bg d-flex align-items-center justify-content-center text-center" data-setbg="/img/TeamGosuCloudBackground.png">
+        <div class="hero-item d-flex align-items-center justify-content-center text-center">
             <div class="container">
-                <img src="~/img/TeamGosuLogoTransparent.png" height="500" style="max-width: 500px; margin: auto" alt="logo" />
+                <img src="~/img/TeamGosuLogoTransparent.png" height="500" style="max-width: 500px; margin: auto" alt="logo" loading="lazy" />
                 <p style="color:#fff;">Professional Starcraft 2 Team and Community</p>
                 <a href="#intro-section" class="site-btn">Read More  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
             </div>
         </div>
-        <div class="hero-item set-bg d-flex align-items-center justify-content-center text-center" data-setbg="/img/slider-bg-2.jpg">
-
+        <div class="hero-item d-flex align-items-center justify-content-center text-center">
             <div class="container">
                 <iframe width="700" height="525"
                         src="https://youtube.com/embed/sDE6liH0Pgc"></iframe>
             </div>
         </div>
-        <div class="hero-item set-bg d-flex align-items-center justify-content-center text-center" data-setbg="/img/slider-bg-2.jpg">
-
+        <div class="hero-item d-flex align-items-center justify-content-center text-center">
             <div class="container">
                 <iframe width="700" height="525"
                         src="https://youtube.com/embed/17OHeDr-i6U"></iframe>
             </div>
         </div>
-        <div class="hero-item set-bg d-flex align-items-center justify-content-center text-center" data-setbg="/img/slider-bg-2.jpg">
-
+        <div class="hero-item d-flex align-items-center justify-content-center text-center">
             <div class="container">
                 <iframe width="700" height="525"
                         src="https://youtube.com/embed/G7eObsV2cu4"></iframe>
             </div>
         </div>
-        <div class="hero-item set-bg d-flex align-items-center justify-content-center text-center" data-setbg="/img/slider-bg-2.jpg">
-
+        <div class="hero-item d-flex align-items-center justify-content-center text-center">
             <div class="container">
                 <iframe width="700" height="525"
                         src="https://youtube.com/embed/_HfGnpmTAgs"></iframe>
@@ -100,24 +96,24 @@
                     foreach (NewsStory story in Model.GetLatestStories()) {
                         String uiPublishDate = Model.GetUiPublishDate(story);
                         if (!isFirstStory) {
-                            <div class="white-divider-line"></div>
+                                <div class="white-divider-line"></div>
                         } else {
                             isFirstStory = false;
                         }
 
-                        <div class="news-story-container">
-                            <div class="news-story-image-container">
-                                <img src="@story.ImageUrl" alt="">
-                            </div>
-                            <div class="news-story-text-container">
-                                <div class="news-story-date">@uiPublishDate</div>
-                                <h3 class="news-story-title">@story.Title</h3>
-                                <p class="news-story-content">@story.Content</p>
-                                @if (story.DetailsUrl != null) {
-                                    <a href="@story.DetailsUrl" class="read-more text-white">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+                            <div class="news-story-container">
+                                <div class="news-story-image-container">
+                                    <img src="@story.ImageUrl" alt="" loading="lazy">
+                                </div>
+                                <div class="news-story-text-container">
+                                    <div class="news-story-date">@uiPublishDate</div>
+                                    <h3 class="news-story-title">@story.Title</h3>
+                                    <p class="news-story-content">@story.Content</p>
+                                    @if (story.DetailsUrl != null) {
+                                        <a href="@story.DetailsUrl" class="read-more text-white">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
                                 }
+                                </div>
                             </div>
-                        </div>
                     }
                 }
             </div>
