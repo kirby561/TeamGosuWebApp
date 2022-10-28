@@ -1,42 +1,46 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 @model HomeModel
 @using TeamGosuWebApp.Models
 
 <!-- Header section end -->
 <!-- Hero section -->
-<section class="hero-section overflow-hidden" style="background-image: url('img/TeamGosuCloudBackground.png');">
-    <div class="hero-slider owl-carousel">
-        <div class="hero-item d-flex align-items-center justify-content-center text-center">
-            <div class="container">
-                <img src="~/img/TeamGosuLogoTransparent.png" height="500" style="max-width: 500px; margin: auto" alt="logo" loading="lazy" />
-                <p style="color:#fff;">Professional Starcraft 2 Team and Community</p>
-                <a href="#intro-section" class="site-btn">Read More  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+<section class="first-section" style="background-image: url('img/TeamGosuCloudBackground.png'); background-repeat: no-repeat; background-size: cover;">
+    <div class="header-warp">
+        <div class="hero-slider owl-carousel">
+            <div class="hero-item d-flex align-items-center justify-content-center text-center">
+                <div class="container">
+                    <div class="hero-image-container">
+                        <img src="~/img/TeamGosuLogoTransparent.png" width="100%" height="100%" class="hero-image" alt="" loading="lazy" />
+                    </div>
+                    <p style="color:#fff;">Professional Starcraft 2 Team and Community</p>
+                    <a href="#intro-section" class="site-btn">Read More  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+                </div>
             </div>
-        </div>
-        <div class="hero-item d-flex align-items-center justify-content-center text-center">
-            <div class="container">
-                <iframe width="700" height="525"
-                        src="https://youtube.com/embed/sDE6liH0Pgc"></iframe>
+            <div class="hero-item d-flex align-items-center justify-content-center text-center">
+                <div class="container hero-iframe-container">
+                    <iframe class="hero-iframe"
+                            src="https://youtube.com/embed/sDE6liH0Pgc"></iframe>
+                </div>
             </div>
-        </div>
-        <div class="hero-item d-flex align-items-center justify-content-center text-center">
-            <div class="container">
-                <iframe width="700" height="525"
-                        src="https://youtube.com/embed/17OHeDr-i6U"></iframe>
+            <div class="hero-item d-flex align-items-center justify-content-center text-center">
+                <div class="container hero-iframe-container">
+                    <iframe class="hero-iframe"
+                            src="https://youtube.com/embed/17OHeDr-i6U"></iframe>
+                </div>
             </div>
-        </div>
-        <div class="hero-item d-flex align-items-center justify-content-center text-center">
-            <div class="container">
-                <iframe width="700" height="525"
-                        src="https://youtube.com/embed/G7eObsV2cu4"></iframe>
+            <div class="hero-item d-flex align-items-center justify-content-center text-center">
+                <div class="container hero-iframe-container">
+                    <iframe class="hero-iframe"
+                            src="https://youtube.com/embed/G7eObsV2cu4"></iframe>
+                </div>
             </div>
-        </div>
-        <div class="hero-item d-flex align-items-center justify-content-center text-center">
-            <div class="container">
-                <iframe width="700" height="525"
-                        src="https://youtube.com/embed/_HfGnpmTAgs"></iframe>
+            <div class="hero-item d-flex align-items-center justify-content-center text-center">
+                <div class="container hero-iframe-container">
+                    <iframe class="hero-iframe"
+                            src="https://youtube.com/embed/_HfGnpmTAgs"></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -46,10 +50,10 @@
 <section class="intro-section" id="intro-section">
     <div class="container">
         <div class="section-title text-white">
-            <h2 style="padding: 0px 0px 25px 0px;">Check us out on...</h2>
+            <h2>Check us out on...</h2>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top: 25px;">
                 <div class="intro-text-box text-box text-white">
                     <div style="display: flex; margin: 5px;">
                         <img style="margin: 5px;" src="~/img/icons/twitch.svg" height="35" />
@@ -59,7 +63,7 @@
                     <a style="margin: 15px; margin-left: 5px" href="https://twitch.teamgosu.gg/" class="read-more">Watch  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top: 25px;">
                 <div class="intro-text-box text-box text-white">
                     <div style="display: flex;">
                         <img style="margin: 5px;" src="~/img/icons/discord.svg" height="35" />
@@ -69,7 +73,7 @@
                     <a style="margin: 15px; margin-left: 5px" href="https://discord.teamgosu.gg/" class="read-more">Join  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top: 25px;">
                 <div class="intro-text-box text-box text-white">
                     <div style="display: flex;">
                         <img style="margin: 5px;" src="~/img/icons/patreon.svg" height="35" />
