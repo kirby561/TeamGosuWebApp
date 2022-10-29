@@ -416,10 +416,9 @@ ol {
 	display: -ms-flexbox;
 	display: flex;
 	z-index: 2;
-	left: calc(50% - 740px);
-	bottom: 38px;
-	position: relative;
-	width: 1496px;
+	left: 20%;
+	bottom: 3%;
+	width: 100%;
 	position: absolute;
 }
 
@@ -456,7 +455,9 @@ ol {
 .hero-slider .owl-nav .owl-next {
 	position: absolute;
 	top: 50%;
-	right: 100px;
+	right: 2%;
+	width: 5%;
+	height: 5%;
 }
 
 .hero-item {
@@ -1797,22 +1798,19 @@ ol {
   Responsive
 ---------------------*/
 
-@media (min-width: 1200px) {
+@media only screen and (min-width: 1200px) {
 	.container {
 		max-width: 1175px;
 	}
 }
 
-@media (max-width: 1530px) {
-	.hero-slider .owl-dots {
-		width: 1170px;
-		left: calc(50% - 585px);
-	}
+@media only screen and (max-width: 1530px) {
+
 }
 
 /* Medium screen : 992px. */
 
-@media (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
 	.hero-item {
 		height: 921px;
 	}
@@ -1820,7 +1818,7 @@ ol {
 
 /* Tablet :768px. */
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
 	.hero-item {
 		height: 800px;
 	}
@@ -1828,16 +1826,26 @@ ol {
 
 /* Large Mobile :480px. */
 
-@media (max-width: 767px) {
+@media only screen and (max-width: 767px) {
 	.hero-item {
-		height: 700px;
+		height: 600px;
+	}
+
+	.hero-iframe-container {
+		width: 95%;
+		padding-top: 53.44%;
 	}
 }
 
 /* Small Mobile :320px. */
 
-@media (max-width: 479px) {
+@media only screen and (max-width: 479px) {
 	.hero-item {
 		height: 600px;
+	}
+
+	.hero-iframe-container {
+		width: 95%;
+		padding-top: 53.44%;
 	}
 }
