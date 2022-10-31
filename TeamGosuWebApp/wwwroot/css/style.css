@@ -65,6 +65,11 @@ img {
 	max-width: 100%;
 }
 
+section {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
 input:focus,
 select:focus,
 button:focus,
@@ -127,8 +132,8 @@ ol {
 }
 
 .spad {
-	padding-top: 105px;
-	padding-bottom: 105px;
+	padding-top: 6%;
+	padding-bottom: 6%;
 }
 
 .text-white h1,
@@ -263,6 +268,10 @@ ol {
 		border: 4px solid #f44336;
 		border-left-color: transparent;
 	}
+}
+
+.container {
+	overflow: scroll;
 }
 
 /*------------------
@@ -403,7 +412,7 @@ ol {
 	This will be set per device resolution.
 */
 .first-section {
-	padding-top: 125px;
+	padding-top: 250px;
 }
 
 /*------------------
@@ -418,7 +427,7 @@ ol {
 	z-index: 2;
 	left: 20%;
 	bottom: 3%;
-	width: 100%;
+	width: 75%;
 	position: absolute;
 }
 
@@ -566,7 +575,6 @@ ol {
 
 .intro-section {
 	background: #060a2e;
-	padding: 115px 0;
 }
 
 .text-box .top-meta {
@@ -1835,6 +1843,25 @@ ol {
 		width: 95%;
 		padding-top: 53.44%;
 	}
+
+	.news-story-container {
+		display: block;
+		margin: 0px;
+	}
+
+	.news-story-text-container {
+		margin-bottom: 25px;
+	}
+
+	.footer-menu a {
+		padding: 5px;
+		color: white;
+	}
+
+	.footer-menu a:hover {
+		padding: 5px;
+		color: gray;
+	}
 }
 
 /* Small Mobile :320px. */
@@ -1847,5 +1874,24 @@ ol {
 	.hero-iframe-container {
 		width: 95%;
 		padding-top: 53.44%;
+	}
+
+	.news-story-container {
+		display: block;
+		margin: 0px;
+	}
+
+	.news-story-text-container {
+		margin-bottom: 25px;
+	}
+
+	.footer-menu a {
+		padding: 5px;
+		color: white;
+	}
+
+	.footer-menu a:hover {
+		padding: 5px;
+		color: gray;
 	}
 }
