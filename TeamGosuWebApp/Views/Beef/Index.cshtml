@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Beef Ladder";
 }
-<section style="padding-top: 200px;" class="intro-section" id="intro-section">
+<section class="intro-section first-section" id="intro-section">
 
         <div class="section-title">
             <div class="beef-ladder-header-container">
@@ -19,12 +19,16 @@
                     int i = 0;
                     int rowCount = 1;
                     while (i < @Model.BeefLadderEntries.Length) {
-                        <div class="beef-row">
+                        String beefRowClass = "beef-row";
+                        String beefEntryClass = "beef-entry";
+                        if (rowCount % 2 == 1)
+                            beefEntryClass += " beef-entry-odd";
+                        <div class="@beefRowClass">
                             @{
                                 int rowEnd = i + rowCount;
                                 @while (i < rowEnd) {
                                     if (i < Model.BeefLadderEntries.Length && !String.IsNullOrWhiteSpace(Model.BeefLadderEntries[i].BeefName)) {
-                                        <div class="beef-entry">
+                                        <div class="@beefEntryClass">
                                             <div class="beef-entry-name-container">
                                                 <div class="beef-entry-rank">
                                                     @{
@@ -49,7 +53,7 @@
                                             
                                         </div>
                                     } else {
-                                        <div class="beef-entry">
+                                        <div class="@beefEntryClass">
                                             <div class="beef-entry-name-container">
                                                 <div class="beef-entry-rank">
                                                     @{

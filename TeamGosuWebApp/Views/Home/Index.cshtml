@@ -1,55 +1,59 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 @model HomeModel
 @using TeamGosuWebApp.Models
 
 <!-- Header section end -->
 <!-- Hero section -->
-<section class="hero-section overflow-hidden" style="background-image: url('img/TeamGosuCloudBackground.png');">
-    <div class="hero-slider owl-carousel">
-        <div class="hero-item d-flex align-items-center justify-content-center text-center">
-            <div class="container">
-                <img src="~/img/TeamGosuLogoTransparent.png" height="500" style="max-width: 500px; margin: auto" alt="logo" loading="lazy" />
-                <p style="color:#fff;">Professional Starcraft 2 Team and Community</p>
-                <a href="#intro-section" class="site-btn">Read More  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+<section style="background-image: url('img/TeamGosuCloudBackground.png'); background-repeat: no-repeat; background-size: cover; padding-top: 125px;">
+    <div class="header-warp">
+        <div class="hero-slider owl-carousel">
+            <div class="hero-item d-flex align-items-center justify-content-center text-center">
+                <div class="container" style="overflow: hidden;">
+                    <div class="hero-image-container">
+                        <img src="~/img/TeamGosuLogoTransparent.png" width="100%" height="100%" class="hero-image" alt="" loading="lazy" />
+                    </div>
+                    <p style="color:#fff;">Professional Starcraft 2 Team and Community</p>
+                    <a href="#intro-section" class="site-btn" style="margin-bottom: 25px;">Read More  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+                </div>
             </div>
-        </div>
-        <div class="hero-item d-flex align-items-center justify-content-center text-center">
-            <div class="container">
-                <iframe width="700" height="525"
-                        src="https://youtube.com/embed/sDE6liH0Pgc"></iframe>
+            <div class="hero-item d-flex align-items-center justify-content-center text-center">
+                <div class="container hero-iframe-container">
+                    <iframe class="hero-iframe"
+                            src="https://youtube.com/embed/sDE6liH0Pgc"></iframe>
+                </div>
             </div>
-        </div>
-        <div class="hero-item d-flex align-items-center justify-content-center text-center">
-            <div class="container">
-                <iframe width="700" height="525"
-                        src="https://youtube.com/embed/17OHeDr-i6U"></iframe>
+            <div class="hero-item d-flex align-items-center justify-content-center text-center">
+                <div class="container hero-iframe-container">
+                    <iframe class="hero-iframe"
+                            src="https://youtube.com/embed/17OHeDr-i6U"></iframe>
+                </div>
             </div>
-        </div>
-        <div class="hero-item d-flex align-items-center justify-content-center text-center">
-            <div class="container">
-                <iframe width="700" height="525"
-                        src="https://youtube.com/embed/G7eObsV2cu4"></iframe>
+            <div class="hero-item d-flex align-items-center justify-content-center text-center">
+                <div class="container hero-iframe-container">
+                    <iframe class="hero-iframe"
+                            src="https://youtube.com/embed/G7eObsV2cu4"></iframe>
+                </div>
             </div>
-        </div>
-        <div class="hero-item d-flex align-items-center justify-content-center text-center">
-            <div class="container">
-                <iframe width="700" height="525"
-                        src="https://youtube.com/embed/_HfGnpmTAgs"></iframe>
+            <div class="hero-item d-flex align-items-center justify-content-center text-center">
+                <div class="container hero-iframe-container">
+                    <iframe class="hero-iframe"
+                            src="https://youtube.com/embed/_HfGnpmTAgs"></iframe>
+                </div>
             </div>
         </div>
     </div>
 </section>
 <!-- Hero section end-->
 <!-- Intro section -->
-<section class="intro-section" id="intro-section">
+<section class="intro-section spad" id="intro-section">
     <div class="container">
         <div class="section-title text-white">
-            <h2 style="padding: 0px 0px 25px 0px;">Check us out on...</h2>
+            <h2>Check us out on...</h2>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top: 25px;">
                 <div class="intro-text-box text-box text-white">
                     <div style="display: flex; margin: 5px;">
                         <img style="margin: 5px;" src="~/img/icons/twitch.svg" height="35" />
@@ -59,7 +63,7 @@
                     <a style="margin: 15px; margin-left: 5px" href="https://twitch.teamgosu.gg/" class="read-more">Watch  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top: 25px;">
                 <div class="intro-text-box text-box text-white">
                     <div style="display: flex;">
                         <img style="margin: 5px;" src="~/img/icons/discord.svg" height="35" />
@@ -69,7 +73,7 @@
                     <a style="margin: 15px; margin-left: 5px" href="https://discord.teamgosu.gg/" class="read-more">Join  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top: 25px;">
                 <div class="intro-text-box text-box text-white">
                     <div style="display: flex;">
                         <img style="margin: 5px;" src="~/img/icons/patreon.svg" height="35" />
@@ -96,24 +100,24 @@
                     foreach (NewsStory story in Model.GetLatestStories()) {
                         String uiPublishDate = Model.GetUiPublishDate(story);
                         if (!isFirstStory) {
-                                <div class="white-divider-line"></div>
+                                                            <div class="white-divider-line"></div>
                         } else {
                             isFirstStory = false;
                         }
 
-                            <div class="news-story-container">
-                                <div class="news-story-image-container">
-                                    <img src="@story.ImageUrl" alt="" loading="lazy">
-                                </div>
-                                <div class="news-story-text-container">
-                                    <div class="news-story-date">@uiPublishDate</div>
-                                    <h3 class="news-story-title">@story.Title</h3>
-                                    <p class="news-story-content">@story.Content</p>
-                                    @if (story.DetailsUrl != null) {
-                                        <a href="@story.DetailsUrl" class="read-more text-white">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+                                            <div class="news-story-container">
+                                                <div class="news-story-image-container">
+                                                    <img src="@story.ImageUrl" alt="" loading="lazy">
+                                                </div>
+                                                <div class="news-story-text-container">
+                                                    <div class="news-story-date">@uiPublishDate</div>
+                                                    <h3 class="news-story-title">@story.Title</h3>
+                                                    <p class="news-story-content">@story.Content</p>
+                                                    @if (story.DetailsUrl != null) {
+                                                        <a href="@story.DetailsUrl" class="read-more text-white">Details  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
                                 }
-                                </div>
-                            </div>
+                                                </div>
+                                            </div>
                     }
                 }
             </div>
@@ -123,30 +127,3 @@
         </div>
     </div>
 </section>
-<!--Add other types of sections like this:
-    < !-- Blog section end -- >
-    < !-- Intro section -- >
-    <section class="intro-video-section set-bg d-flex align-items-end " data-setbg="img/news/2022-10-04_ReaperVsNina.png">
-        <a href="https://www.youtube.com/watch?v=CmFvPb2vpKs" class="video-play-btn video-popup"><img src="img/icons/solid-right-arrow.png" alt="#"></a>
-        <div class="container">
-            <div class="video-text">
-                <h2>Reaper in Dreamhack Atlanta Regional Group Stage</h2>
-                <p>Reaper takes on Nina in the first round of the NA Regional Group Stage for Dreamhack Atlanta. The match will be a ZvP starting off on Moondace.</p>
-            </div>
-        </div>
-    </section>
-    < !-- Intro section end -- >
-    < !-- Featured section -- >
-    <section class="featured-section">
-        <div class="featured-bg set-bg" data-setbg="img/news/2022-Protoss-Imba.jpg"></div>
-        <div class="featured-box">
-            <div class="text-box">
-                <div class="top-meta">Oct. 5th 2022</div>
-                <h3>New Study by Independent Researchers Suggests Protoss Imba</h3>
-                <p>A research study was performed by Google Analytics using their new Deep Mind technology that analyzed the actions per minute (abbreviated "APM") required to manage the armies of all three races in countless situations. The study then looked at the advantage gained in these different scenarios with varying amounts of APM each time. A clear link was demonstrated between scenarios that require low APM and that scenario involving a protoss army. While more research is needed, scientists say this is the first step to proving a causal link between playing protoss and lack of skill.</p>
-                <a href="#" class="read-more">Read More  <img src="img/icons/double-arrow.png" alt="#" /></a>
-            </div>
-        </div>
-    </section>
-    < !-- Featured section end-- >
--->
