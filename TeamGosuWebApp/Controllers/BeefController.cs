@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.WebSockets;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TeamGosuWebApp.Models;
 
@@ -10,6 +14,9 @@ namespace TeamGosuWebApp.Controllers {
     public class BeefController : Controller {
         // TODO: set this with a config file
         private const String BeefBotUrl = "http://localhost:5000/beef-ladder";
+
+        public BeefController() {
+        }
 
         public async Task<IActionResult> Index() {
             HttpClient client = new HttpClient();

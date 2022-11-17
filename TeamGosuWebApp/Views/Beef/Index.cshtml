@@ -2,89 +2,100 @@
 @{
     ViewData["Title"] = "Beef Ladder";
 }
+
+<script type="text/javascript">
+    var connection = new signalR.HubConnectionBuilder().withUrl("/BeefHub").build();
+
+    connection.on("OnBeefLadderUpdated", function () {
+        window.location.reload();
+    });
+
+    connection.start()
+</script>
+
 <section class="intro-section first-section" id="intro-section">
 
-        <div class="section-title">
-            <div class="beef-ladder-header-container">
-                <div class="beef-ladder-header-container-squisher">
-                    <div class="beef-ladder-header">Settle the Beef</div>
-                    <div class="beef-ladder-subheader">Team Ladder</div>
-                </div>
-            </div>
-            <div style="max-width: 750px; padding-left: 15px; margin: auto;">
-                <a href="#rules" class="beef-rules">Rules  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
-            </div>
-            <div class="beef-ladder-container">
-                @{
-                    int i = 0;
-                    int rowCount = 1;
-                    while (i < @Model.BeefLadderEntries.Length) {
-                        String beefRowClass = "beef-row";
-                        String beefEntryClass = "beef-entry";
-                        if (rowCount % 2 == 1)
-                            beefEntryClass += " beef-entry-odd";
-                                                        <div class="@beefRowClass">
-                                                            @{
-                                int rowEnd = i + rowCount;
-                                                                                                @while (i < rowEnd) {
-                                    if (i < Model.BeefLadderEntries.Length && !String.IsNullOrWhiteSpace(Model.BeefLadderEntries[i].BeefName)) {
-                                                                                                        <div class="@beefEntryClass">
-                                                                                                            <div class="beef-entry-name-container">
-                                                                                                                <div class="beef-entry-rank">
-                                                                                                                    @{
-                                                        int rank = i + 1;
-                                                                                                                    }
-                                                                                                                    @rank
-                                                                                                                </div>
-                                                                                                                <div class="beef-entry-name">
-                                                                                                                    @Model.BeefLadderEntries[i].BeefName
-                                                                                                                </div>
-                                                                                                                <div class="beef-entry-rank">
-                                                                                                                    &nbsp;
-                                                                                                                </div>
-                                                                                                            </div>
-
-                                                                                                            <div class="beef-entry-mmr-race-container">
-                                                                                                                <img src="@Model.BeefLadderEntries[i].RaceIconPath" style="margin: 2px; margin-left: -22px; width: 20px; height: 20px;" />
-                                                                                                                <span class="beef-entry-mmr">
-                                                                                                                    @Model.BeefLadderEntries[i].MmrUser
-                                                                                                                </span>
-                                                                                                            </div>
-                                                                                                            
-                                                                                                        </div>
-                                    } else {
-                                                                                                        <div class="@beefEntryClass">
-                                                                                                            <div class="beef-entry-name-container">
-                                                                                                                <div class="beef-entry-rank">
-                                                                                                                    @{
-                                                        int rank = i + 1;
-                                                                                                                    }
-                                                                                                                    @rank
-                                                                                                                </div>
-                                                                                                                <div class="beef-entry-name">
-                                                                                                                    &nbsp;
-                                                                                                                </div>
-                                                                                                                <div class="beef-entry-rank">
-                                                                                                                    &nbsp;
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <div class="beef-entry-mmr-race-container">
-                                                                                                                <span class="beef-entry-mmr">
-                                                                                                                    &nbsp;
-                                                                                                                </span>
-                                                                                                            </div>
-                                                                                                        </div>
-                                    }
-                                    i++;
-                                }
-                                                            }
-                                                        </div>
-
-                        rowCount += 1;
-                    }
-                }
+    <div class="section-title">
+        <div class="beef-ladder-header-container">
+            <div class="beef-ladder-header-container-squisher">
+                <div class="beef-ladder-header">Settle the Beef</div>
+                <div class="beef-ladder-subheader">Team Ladder</div>
             </div>
         </div>
+        <div style="max-width: 750px; padding-left: 15px; margin: auto;">
+            <a href="#rules" class="beef-rules">Rules  <img src="~/img/icons/double-arrow.png" alt="#" /></a>
+        </div>
+        <div class="beef-ladder-container">
+            @{
+                int i = 0;
+                int rowCount = 1;
+                while (i < @Model.BeefLadderEntries.Length) {
+                    String beefRowClass = "beef-row";
+                    String beefEntryClass = "beef-entry";
+                    if (rowCount % 2 == 1)
+                        beefEntryClass += " beef-entry-odd";
+                    <div class="@beefRowClass">
+                        @{
+                            int rowEnd = i + rowCount;
+                            @while (i < rowEnd) {
+                                if (i < Model.BeefLadderEntries.Length && !String.IsNullOrWhiteSpace(Model.BeefLadderEntries[i].BeefName)) {
+                                    <div class="@beefEntryClass">
+                                        <div class="beef-entry-name-container">
+                                            <div class="beef-entry-rank">
+                                                @{
+                                                    int rank = i + 1;
+                                                }
+                                                @rank
+                                            </div>
+                                            <div class="beef-entry-name">
+                                                @Model.BeefLadderEntries[i].BeefName
+                                            </div>
+                                            <div class="beef-entry-rank">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+
+                                        <div class="beef-entry-mmr-race-container">
+                                            <img src="@Model.BeefLadderEntries[i].RaceIconPath" style="margin: 2px; margin-left: -22px; width: 20px; height: 20px;" />
+                                            <span class="beef-entry-mmr">
+                                                @Model.BeefLadderEntries[i].MmrUser
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                } else {
+                                    <div class="@beefEntryClass">
+                                        <div class="beef-entry-name-container">
+                                            <div class="beef-entry-rank">
+                                                @{
+                                                    int rank = i + 1;
+                                                }
+                                                @rank
+                                            </div>
+                                            <div class="beef-entry-name">
+                                                &nbsp;
+                                            </div>
+                                            <div class="beef-entry-rank">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                        <div class="beef-entry-mmr-race-container">
+                                            <span class="beef-entry-mmr">
+                                                &nbsp;
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                                i++;
+                            }
+                        }
+                    </div>
+
+                    rowCount += 1;
+                }
+            }
+        </div>
+    </div>
 </section>
 <section class="blog-section spad" id="rules">
     <div class="container">
