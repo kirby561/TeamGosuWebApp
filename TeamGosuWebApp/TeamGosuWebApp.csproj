@@ -5,7 +5,7 @@
     <UserSecretsId>aspnet-TeamGosuWebApp-A4A3C117-8FEC-4D3D-9FA8-C0C9B279ECFB</UserSecretsId>
     <StartupObject>TeamGosuWebApp.Program</StartupObject>
     <ApplicationIcon>wwwroot\img\TeamGosuIcon.ico</ApplicationIcon>
-	<VersionPrefix>0.7.0</VersionPrefix>
+	<VersionPrefix>0.8.0</VersionPrefix>
 	<VersionSuffix>beta</VersionSuffix>
     <Version Condition=" '$(VersionSuffix)' != '' ">$(VersionPrefix)-$(VersionSuffix)</Version>
     <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
