@@ -1,0 +1,83 @@
+{
+	"Priority": 1,
+	"Name": "Semi-Pro Team",
+	"Players": [
+		{
+			"Name": "AeiS",
+			"Race": "Protoss",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/3327948",
+			"Aligulac": "http://aligulac.com/players/7945-AeiS/"
+		},
+		{
+			"Name": "CammyGreen",
+			"Race": "Protoss",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/450542",
+			"Aligulac": "http://aligulac.com/players/19855-CammyGreen/"
+		},
+		{
+			"Name": "Cereal",
+			"Race": "Zerg",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/2809973",
+			"Aligulac": "http://aligulac.com/players/5000-Cereal/"
+		},
+		{
+			"Name": "DeadRemus",
+			"Race": "Zerg",
+			"League": "Masters 3",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/2809973",
+			"Aligulac": "http://aligulac.com/players/5000-Cereal/"
+		},
+		{
+			"Name": "Faye",
+			"Race": "Zerg",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/profile/1/1/11570165",
+			"Aligulac": ""
+		},
+		{
+			"Name": "ElegancE",
+			"Race": "Protoss",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/1600722",
+			"Aligulac": "http://aligulac.com/players/7939-ElegancE/"
+		},
+		{
+			"Name": "Lyra",
+			"Race": "Terran",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/542163",
+			"Aligulac": "http://aligulac.com/players/13861-Lyra/"
+		},
+		{
+			"Name": "NewBreed",
+			"Race": "Zerg",
+			"League": "Masters 2",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/1150794",
+			"Aligulac": ""
+		},
+		{
+			"Name": "NoveaStar",
+			"Race": "Zerg",
+			"League": "Diamond 2",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/1040757",
+			"Aligulac": null
+		},
+		{
+			"Name": "Pastry",
+			"Race": "Terran",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/10760287",
+			"Aligulac": "http://aligulac.com/players/18495-Pastry/"
+		},
+		{
+			"Name": "Seryu",
+			"Race": "Terran",
+			"League": "Diamond 2",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/10572523",
+			"Aligulac": null
+		}
+	]
+}

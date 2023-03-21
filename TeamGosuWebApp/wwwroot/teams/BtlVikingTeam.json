@@ -1,0 +1,62 @@
+{
+	"Priority": 2,
+	"Name": "BTL Viking",
+	"Players": [
+		{
+			"Name": "Rolch",
+			"Race": "Terran",
+			"League": "Diamond 2",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/6831435",
+			"Aligulac": null
+		},
+		{
+			"Name": "DeadRemus",
+			"Race": "Zerg",
+			"League": "Masters 3",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/3509753",
+			"Aligulac": null
+		},
+		{
+			"Name": "Parmigiano",
+			"Race": "Zerg",
+			"League": "Masters 3",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/420936",
+			"Aligulac": null
+		},
+		{
+			"Name": "Kirby",
+			"Race": "Terran",
+			"League": "Masters 3",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/1986271",
+			"Aligulac": "http://aligulac.com/players/21591-kirby/"
+		},
+		{
+			"Name": "SimplePickUp",
+			"Race": "Zerg",
+			"League": "Masters 3",
+			"BattleNetUrl": "https://starcraft2.com/en-gb/profile/1/1/1063020",
+			"Aligulac": "http://aligulac.com/players/21060-SimplePickUp/"
+		},
+		{
+			"Name": "FuriousDroid",
+			"Race": "Zerg",
+			"League": "Diamond 1",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/3486292",
+			"Aligulac": ""
+		},
+		{
+			"Name": "TheEvilOne",
+			"Race": "Random",
+			"League": "Masters 2",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/2448997",
+			"Aligulac": ""
+		},
+		{
+			"Name": "Guildelin",
+			"Race": "Zerg",
+			"League": "Masters 3",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/358372",
+			"Aligulac": ""
+		}
+	]
+}

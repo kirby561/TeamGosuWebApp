@@ -3,116 +3,11 @@
 	"Name": "Pro Team",
 	"Players": [
 		{
-			"Name": "Reaper",
-			"Race": "Zerg",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/10776193",
-			"Aligulac": "http://aligulac.com/players/16187-Reaper/"
-		},
-		{
-			"Name": "Rhizer",
-			"Race": "Protoss",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/profile/1/1/4742132",
-			"Aligulac": "http://aligulac.com/players/12844-Rhizer/"
-		},
-		{
-			"Name": "Maplez",
-			"Race": "Protoss",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/profile/1/1/5953710",
-			"Aligulac": "http://aligulac.com/players/13608-Maplez/"
-		},
-		{
-			"Name": "RockEr",
-			"Race": "Protoss",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/11293431",
-			"Aligulac": "http://aligulac.com/players/2201-RockEr/"
-		},
-		{
-			"Name": "Kozan",
+			"Name": "binski",
 			"Race": "Terran",
 			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/436832",
-			"Aligulac": "http://aligulac.com/players/11974-Kozan/"
-		},
-		{
-			"Name": "Flood",
-			"Race": "Zerg",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/4053022",
-			"Aligulac": "http://aligulac.com/players/11869-Flood/"
-		},
-		{
-			"Name": "Meowerdoom",
-			"Race": "Zerg",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/10453105",
-			"Aligulac": "http://aligulac.com/players/21121-Meowerdoom/"
-		},
-		{
-			"Name": "Scrubbles",
-			"Race": "Zerg",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/1976744",
-			"Aligulac": "http://aligulac.com/players/18532-ScrubbleS/"
-		},
-		{
-			"Name": "Lyra",
-			"Race": "Terran",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/542163",
-			"Aligulac": "http://aligulac.com/players/13861-Lyra/"
-		},
-		{
-			"Name": "CammyGreen",
-			"Race": "Protoss",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/450542",
-			"Aligulac": "http://aligulac.com/players/19855-CammyGreen/"
-		},
-		{
-			"Name": "Haffey",
-			"Race": "Terran",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/5909999",
-			"Aligulac": "http://aligulac.com/players/14367-haffey/"
-		},
-		{
-			"Name": "Bowman",
-			"Race": "Protoss",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/1733520",
-			"Aligulac": "http://aligulac.com/players/4489-Bowman/"
-		},
-		{
-			"Name": "Pastry",
-			"Race": "Terran",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/10760287",
-			"Aligulac": "http://aligulac.com/players/18495-Pastry/"
-		},
-		{
-			"Name": "Geeden",
-			"Race": "Zerg",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/2768457",
-			"Aligulac": "http://aligulac.com/players/8220-Geeden/"
-		},
-		{
-			"Name": "Cereal",
-			"Race": "Zerg",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/2809973",
-			"Aligulac": "http://aligulac.com/players/5000-Cereal/"
-		},
-		{
-			"Name": "Faye",
-			"Race": "Zerg",
-			"League": "Grandmaster",
-			"BattleNetUrl": "https://starcraft2.com/profile/1/1/11570165",
-			"Aligulac": ""
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/7671792",
+			"Aligulac": "http://aligulac.com/players/272-binski/"
 		},
 		{
 			"Name": "Boomhauer",
@@ -122,11 +17,88 @@
 			"Aligulac": null
 		},
 		{
+			"Name": "Flood",
+			"Race": "Zerg",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/4053022",
+			"Aligulac": "http://aligulac.com/players/11869-Flood/"
+		},
+		{
+			"Name": "Goomba",
+			"Race": "Terran",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/2834476",
+			"Aligulac": "http://aligulac.com/players/23104-Goomba/"
+		},
+		{
+			"Name": "Haffey",
+			"Race": "Terran",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/5909999",
+			"Aligulac": "http://aligulac.com/players/14367-haffey/"
+		},
+		{
+			"Name": "Koda",
+			"Race": "Terran",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/3953044",
+			"Aligulac": "http://aligulac.com/players/18224-Koda/"
+		},
+		{
+			"Name": "Kozan",
+			"Race": "Terran",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/436832",
+			"Aligulac": "http://aligulac.com/players/11974-Kozan/"
+		},
+		{
+			"Name": "Maplez",
+			"Race": "Protoss",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/profile/1/1/5953710",
+			"Aligulac": "http://aligulac.com/players/13608-Maplez/"
+		},
+		{
+			"Name": "MeomaikA",
+			"Race": "Zerg",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/7290428",
+			"Aligulac": "http://aligulac.com/players/12125-MeomaikA/"
+		},
+		{
+			"Name": "Meowerdoom",
+			"Race": "Zerg",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/10453105",
+			"Aligulac": "http://aligulac.com/players/21121-Meowerdoom/"
+		},
+		{
 			"Name": "Prototype",
 			"Race": "Zerg",
 			"League": "Grandmaster",
 			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/2004243",
 			"Aligulac": "http://aligulac.com/players/8809-Prototype/"
+		},
+		{
+			"Name": "Reaper",
+			"Race": "Zerg",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/10776193",
+			"Aligulac": "http://aligulac.com/players/16187-Reaper/"
+		},
+		{
+			"Name": "RockEr",
+			"Race": "Protoss",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/1/11293431",
+			"Aligulac": "http://aligulac.com/players/2201-RockEr/"
+		},
+		{
+			"Name": "Sagan",
+			"Race": "Protoss",
+			"League": "Grandmaster",
+			"BattleNetUrl": "https://starcraft2.com/en-us/profile/1/2/58416",
+			"Aligulac": "http://aligulac.com/players/15744-Sagan/"
 		}
 	]
 }
