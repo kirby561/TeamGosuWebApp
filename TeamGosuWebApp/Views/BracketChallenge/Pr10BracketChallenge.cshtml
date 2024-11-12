@@ -4,15 +4,13 @@
 @using TeamGosuWebApp.Models
 
 <section class="bracketChallenge-section first-section">
-	<div style="height: auto; width: 100%;">
+	<div>
 		<script src="~/js/html2canvas.js"></script>
 		<script type="text/javascript">
 			function saveCanvas() {
 				setTimeout(function () {
 					var canvasDiv = document.getElementsByClassName('canvasDiv')[0];
-					var targetWidthPixels = 1800;
-					var targetScale = targetWidthPixels / canvasDiv.offsetWidth;
-					html2canvas(canvasDiv, { backgroundColor: null, allowTaint: true, useCORS: true, height: canvasDiv.offsetHeight, scale: targetScale }).then(canvas => {
+					html2canvas(canvasDiv, { backgroundColor: null, allowTaint: true, useCORS: true, width: canvasDiv.scrollWidth, height: canvasDiv.scrollHeight }).then(canvas => {
 						canvas.toBlob(function (fullImageBlob) {
 							// Create blob URL
 							const url = URL.createObjectURL(fullImageBlob);

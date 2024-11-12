@@ -800,6 +800,7 @@ ol {
 */
 .bracketChallenge-section {
 	background: #060a2e;
+	overflow: auto;
 }
 
 /*
