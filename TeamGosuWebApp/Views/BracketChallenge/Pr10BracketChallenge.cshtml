@@ -1,0 +1,803 @@
+﻿@{
+    ViewData["Title"] = "Power Rankings 10 Bracket Challenge";
+}
+@using TeamGosuWebApp.Models
+
+<section class="bracketChallenge-section first-section">
+	<div style="height: auto; width: 100%;">
+		<script src="~/js/html2canvas.js"></script>
+		<script type="text/javascript">
+			function saveCanvas() {
+				setTimeout(function () {
+					var canvasDiv = document.getElementsByClassName('canvasDiv')[0];
+					var targetWidthPixels = 1800;
+					var targetScale = targetWidthPixels / canvasDiv.offsetWidth;
+					html2canvas(canvasDiv, { backgroundColor: null, allowTaint: true, useCORS: true, height: canvasDiv.offsetHeight, scale: targetScale }).then(canvas => {
+						canvas.toBlob(function (fullImageBlob) {
+							// Create blob URL
+							const url = URL.createObjectURL(fullImageBlob);
+
+							// Create temporary anchor element
+							const a = document.createElement('a');
+							a.style.display = 'none';
+							a.href = url;
+							a.download = 'bracket.png';
+
+							// Append to body and trigger download
+							document.body.appendChild(a);
+							a.click();
+
+							// Clean up
+							window.URL.revokeObjectURL(url);
+							document.body.removeChild(a);
+						}, 'image/png'); // End canvas.toBlob(function(fullImageBlob)...
+					}); // End html2canvas(productPreviewContainerDiv...
+				}, 50); // End setTimeout (makes the button feedback happen immediately)
+			}
+		</script>
+		<div class="buttonPanel">
+			<button class="buttonPanelButton" onclick="saveCanvas()">Save</button>
+		</div>
+		<div class="canvasDiv">
+		</div>
+		<script type="text/javascript">
+			// Contains information about a player in the bracket.
+			// The name should be unique.
+			class Player {
+				// name = String, unique ID of the player
+				// race = String, either 'zerg', 'protoss', 'terran' or 'random'
+				// nationality = String, ISO 3166 3 letter country code (like 'usa', 'can', 'vnm', etc)
+				constructor(name, race, nationality) {
+					this.name = name;
+					this.race = race;
+					this.nationality = nationality;
+				}
+			}
+
+			// A unique identifier for a match in the bracket
+			class MatchId {
+				// roundIndex = int, The index of the round (0 for round 1, 1 for round 2, etc)
+				// matchIndex = int, The index of the match in that round (0 for the first, 1 for the second, etc..)
+				// isUpperBracket = bool, True for the upper bracket, false for the lower bracket.
+				constructor(roundIndex, matchIndex, isUpperBracket) {
+					this.roundIndex = roundIndex;
+					this.matchIndex = matchIndex;
+					this.isUpperBracket = isUpperBracket;
+				}
+			}
+
+			// Contains info on where the winner and loser of each match goes after
+			class AdvancementInfo {
+				// winnerMatch = MatchId, the match where the winner goes. Null for nowhere (knocked out or won)
+				// winnerSlot = int, either 1 (for top slot aka player 1) or 2 (for bottom slot aka player 2)
+				// loserMatch = MatchId, the match where the loser goes. Null for nowhere (knocked out or won)
+				// loserSlot = int, either 1 (for top slot aka player 1) or 2 (for bottom slot aka player 2)
+				constructor(winnerMatch, winnerSlot, loserMatch, loserSlot) {
+					this.winnerMatch = winnerMatch;
+					this.winnerSlot = winnerSlot;
+					this.loserMatch = loserMatch;
+					this.loserSlot = loserSlot;
+				}
+			}
+
+			// Contains the data for a given match in the bracket
+			class MatchData {
+				// matchId = MatchId, class uniquely identifying the match in the bracket.
+				// player1 = Player, The top player in the match
+				// player2 = Player, The bottom player in the match
+				// advancementInfo = AdvancementInfo, The details about where the winner and loser go after
+				constructor(matchId, player1, player2, advancementInfo) {
+					this.matchId = matchId;
+					this.player1 = player1;
+					this.player1Score = 0;
+					this.player1Won = false;
+					this.player2 = player2;
+					this.player2Score = 0;
+					this.player2Won = false;
+					this.advancementInfo = advancementInfo;
+
+					// Array of parent matches
+					this.parentMatches = [];
+
+					// Set the max score for this match
+					if (matchId.isUpperBracket) {
+						this.maxScore = (Math.floor(upperBracketBestOfs[matchId.roundIndex] / 2)) + 1;
+					} else {
+						this.maxScore = (Math.floor(lowerBracketBestOfs[matchId.roundIndex] / 2)) + 1;
+					}
+
+					// UI will be filled out when added to the bracket
+					this.inputSlot1 = null;
+					this.inputSlot2 = null;
+					this.matchDiv = null;
+				}
+			}
+
+			// A round is just a list of matches
+			class Round {
+				// roundId = int, The ID of the round
+				// isUpperBracket = bool, true if this is the upper bracket, false for lower bracket
+				constructor(roundId, isUpperBracket) {
+					this.matches = [];
+					this.roundId = roundId;
+					this.isUpperBracket = isUpperBracket;
+				}
+			}
+
+			// This is a double elimination bracket with nobody seeded in the lower bracket.
+			// The upper bracket is set by the following player array. A tree of matches is
+			// setup in the upper and lower bracket. Player names are their unique ID and
+			// can be used to lookup other info about them like their race, country, etc
+			//
+			// Assume the players are in the order of the first upper bracket matches.
+			// Put a bye in if needed.
+			const players = [
+				new Player('MeomaikA', 'zerg', 'vnm'),
+				new Player('Club', 'terran', 'usa'),
+				new Player('Heaven', 'protoss', 'usa'),
+				new Player('Sammyuel', 'zerg', 'can'),
+				new Player('binski', 'terran', 'usa'),
+				new Player('JmaC', 'zerg', 'usa'),
+				new Player('RockEr', 'protoss', 'usa'),
+				new Player('ScrubbleS', 'zerg', 'usa'),
+				new Player('Maplez', 'protoss', 'can'),
+				new Player('Boomhauer', 'protoss', 'usa'),
+				new Player('Meowerdoom', 'zerg', 'usa'),
+				new Player('Eurystheus', 'terran', 'usa'),
+				new Player('Zero', 'terran', 'can'),
+				new Player('Koda', 'terran', 'usa'),
+				new Player('Coucoute', 'protoss', 'fra'),
+				new Player('NAchobo', 'protoss', 'usa')
+			];
+
+			const xSpacing = 275;
+			const ySpacing = 100;
+			const upperBracketSpacing = 50;
+			const lowerBracketSpacing = 100;
+
+			// An array of Rounds. Each RoundData is an array of MatchData
+			upperBracket = [];
+			lowerBracket = [];
+
+			// "best of" rules for upper and lower bracket.
+			// Needs to match the number of upper/lower bracket rounds
+			upperBracketBestOfs = [ 5, 5, 5, 5, 7 ];
+			lowerBracketBestOfs = [ 3, 3, 3, 5, 5, 5];
+
+			// Gets the color for the given race, where race is 'terran', 'protoss', 'zerg', or 'random'
+			function getColorForRace(race) {
+				if (race == 'terran') {
+					return '#000099';
+				} else if (race == 'protoss') {
+					return '#009900';
+				} else if (race == 'zerg') {
+					return '#990000';
+				} else {
+					return '#999900';
+				}
+			}
+
+			// Advances the player to the given match ID
+			// player = Player, The player to advance
+			// newMatchData = MatchId, Identifies the match to advance them to
+			// slotId = int, 1 or 2 for top/bottom of the match.
+			function advancePlayer(player, newMatchId, slotId) {
+				if (newMatchId == null) {
+					return; // They're done
+				}
+
+				if (newMatchId.isUpperBracket) {
+					newMatchData = upperBracket[newMatchId.roundIndex].matches[newMatchId.matchIndex];
+				} else {
+					newMatchData = lowerBracket[newMatchId.roundIndex].matches[newMatchId.matchIndex];
+				}
+
+				if (slotId == 1) {
+					newMatchData.player1 = player;
+					newMatchData.player1Score = 0;
+				} else if (slotId == 2) {
+					newMatchData.player2 = player;
+					newMatchData.player2Score = 0;
+				}
+			}
+
+			// Returns true if the given string is an integer
+			function isInteger(inputStr) {
+				return /^-?\d+$/.test(inputStr);
+			}
+
+			// Returns true if the given value is an integer within the given range.
+			// value = ?, A value to check. Any input here other than an integer will return false.
+			// lowRangeLimit = int, The lower limit of the range (down to and including).
+			// highRangeLimit = int, The upper limit of the range (up to and including).
+			function isIntegerInRange(value, lowRangeLimit, highRangeLimit) {
+				// Undefined?
+				if (value == null || typeof value == 'undefined' || !isInteger(value)) {
+					return false;
+				}
+
+				intValue = parseInt(value);
+				return intValue >= lowRangeLimit && intValue <= highRangeLimit;
+			}
+
+			// Called when the score changes on any of the matches
+			// inputField = inputElement, the field that changed
+			// matchData = MatchData, the data of the match
+			// playerSlot = int, Either 1 for player 1 or 2 for player 2
+			function onScoreChanged(matchData, playerSlot) {
+				if (matchData.player1 == null || matchData.player2 == null) return;
+
+				value1 = matchData.inputSlot1.value;
+				value2 = matchData.inputSlot2.value;
+
+				// Make sure they are both numbers between 0 and maxScore
+				maxScore = matchData.maxScore;
+
+				// First check each one individually just to update the score if it is valid
+				if (isIntegerInRange(value1, 0, maxScore)) {
+					matchData.player1Score = parseInt(value1);
+				}
+				if (isIntegerInRange(value2, 0, maxScore)) {
+					matchData.player2Score = parseInt(value2);
+				}
+
+				// Now check if we should advance them
+				if (isIntegerInRange(value1, 0, maxScore) && isIntegerInRange(value2, 0, maxScore)) {
+					value1Int = parseInt(value1);
+					value2Int = parseInt(value2);
+
+					// Advance the winner
+					if (value1Int == maxScore) {
+						matchData.player1Won = true;
+						matchData.player2Won = false;
+						advancePlayer(matchData.player1, matchData.advancementInfo.winnerMatch, matchData.advancementInfo.winnerSlot);
+						advancePlayer(matchData.player2, matchData.advancementInfo.loserMatch, matchData.advancementInfo.loserSlot);
+					} else if (value2Int == maxScore) {
+						matchData.player1Won = false;
+						matchData.player2Won = true;
+						advancePlayer(matchData.player2, matchData.advancementInfo.winnerMatch, matchData.advancementInfo.winnerSlot);
+						advancePlayer(matchData.player1, matchData.advancementInfo.loserMatch, matchData.advancementInfo.loserSlot);
+					}
+
+					updateBracketUi();
+				}
+			}
+
+			function getSpacingForRoundIndex(roundIndex, isUpperBracket) {
+				if (isUpperBracket) {
+					// Line up corresponding rounds with the lower bracket
+					// The first 2 rounds are 1 to 1, rounds from then on
+					// are 2 lower to 1 upper
+					if (roundIndex < 2) {
+						return xSpacing * roundIndex;
+					} else {
+						return xSpacing * roundIndex + Math.floor((roundIndex + 1) / 2) * xSpacing;
+					}
+				} else {
+					// Lower bracket is always larger than the
+					// upper bracket so it sets the spacing.
+					return xSpacing * roundIndex;
+				}
+			}
+
+			// Returns true if the 2 MatchIds are the same match
+			function isSameMatch(matchId1, matchId2) {
+				return matchId1.roundIndex == matchId2.roundIndex &&
+						matchId1.matchIndex == matchId2.matchIndex &&
+						matchId1.isUpperBracket == matchId2.isUpperBracket;
+			}
+
+			// Gets a nice user-facing string for the given round and if it's the upper or lower bracket
+			function getRoundText(roundIndex, isUpperBracket) {
+				roundNumber = roundIndex + 1;
+				if (isUpperBracket) {
+					if (roundIndex == upperBracket.length - 1) {
+						return "Grand Finals";
+					} else if (roundIndex == upperBracket.length - 2) {
+						return "UB Finals";
+					} else if (roundIndex == upperBracket.length - 3) {
+						return "UB Semis";
+					} else {
+						return `UB Round ${roundNumber}`;
+					}
+				} else {
+					if (roundIndex == lowerBracket.length - 1) {
+						return "LB Finals";
+					} else if (roundIndex == lowerBracket.length - 2) {
+						return "LB Semis";
+					} else {
+						return `LB Round ${roundNumber}`;
+					}
+				}
+			}
+
+			// Gets a nice user-facing string for the given round and match and if it's the upper or lower bracket
+			function getRoundMatchText(roundIndex, matchIndex, isUpperBracket) {
+				roundNumber = roundIndex + 1;
+				matchNumber = matchIndex + 1;
+				if (isUpperBracket) {
+					return `UB R${roundNumber}-${matchNumber}`;
+				} else {
+					return `LB R${roundNumber}-${matchNumber}`;
+				}
+			}
+
+			// Checks if any of the slots are redirects from the other side of the bracket
+			// and returns a label indicating what the redirect was or blank if there was none
+			// for this slot.
+			// matchData = MatchData, The match to check.
+			// slot = Int, The slot to check (1 for player 1, 2 for player 2)
+			function getRedirectLabelIfAny(matchData, slot) {
+				for (i = 0; i < matchData.parentMatches.length; i++) {
+					parentMatchData = matchData.parentMatches[i];
+					advancementInfo = parentMatchData.advancementInfo;
+					if (advancementInfo.winnerMatch != null && isSameMatch(advancementInfo.winnerMatch, matchData.matchId) && advancementInfo.winnerSlot == slot) {
+						// If the parent is in a different bracket, it's a redirect
+						if (parentMatchData.matchId.isUpperBracket != matchData.matchId.isUpperBracket) {
+							return "" + getRoundMatchText(parentMatchData.matchId.roundIndex, parentMatchData.matchId.matchIndex, parentMatchData.matchId.isUpperBracket) + " W";
+						}
+					} else if (advancementInfo.loserMatch != null && isSameMatch(advancementInfo.loserMatch, matchData.matchId) && advancementInfo.loserSlot == slot) {
+						return "" + getRoundMatchText(parentMatchData.matchId.roundIndex, parentMatchData.matchId.matchIndex, parentMatchData.matchId.isUpperBracket) + " L";
+					}
+				}
+
+				return "";
+			}
+
+			// Creates a match and puts it on the bracket
+			// matchData = MatchData, the data to create the UI for.
+			function createMatchUi(matchData) {
+				parentsInSameBracket = [];
+				totalY = 0;
+				for (i = 0; i < matchData.parentMatches.length; i++) {
+					if (matchData.parentMatches[i].matchId.isUpperBracket == matchData.matchId.isUpperBracket) {
+						parentsInSameBracket.push(matchData.parentMatches[i]);
+						totalY += matchData.parentMatches[i].matchDiv.offsetTop;
+					}
+				}
+
+				x = getSpacingForRoundIndex(matchData.matchId.roundIndex, matchData.matchId.isUpperBracket);
+				if (parentsInSameBracket.length == 0) {
+					if (matchData.matchId.isUpperBracket) {
+						y = ySpacing * matchData.matchId.matchIndex + upperBracketSpacing;
+					} else {
+						offset = ySpacing * upperBracket[0].matches.length + upperBracketSpacing + lowerBracketSpacing;
+						y = ySpacing * matchData.matchId.matchIndex + offset;
+					}
+				} else {
+					// Set our y to the average of the parent's positions
+					y = totalY / parentsInSameBracket.length;
+				}
+
+				player1Label = "";
+				player2Label = "";
+				player1Score = 0;
+				player2Score = 0;
+				player1Color = '#222222';
+				player2Color = '#222222';
+				player1ImageName = "/img/icons/random-white.png";
+				player2ImageName = "/img/icons/random-white.png";
+				player1ImageAlt = "?";
+				player2ImageAlt = "?";
+				player1FontWeight = 'normal';
+				player2FontWeight = 'normal';
+				if (matchData.player1 != null) {
+					player1Label = matchData.player1.name;
+					player1Score = matchData.player1Score;
+					player1Color = getColorForRace(matchData.player1.race);
+					player1ImageName = "/img/icons/" + matchData.player1.race + "-white.png";
+					player1ImageAlt = matchData.player1.race.charAt(0).toUpperCase();
+
+					if (matchData.player1Won) {
+						player1FontWeight = 'bold';
+					}
+				} else {
+					player1Label = getRedirectLabelIfAny(matchData, 1);
+				}
+				if (matchData.player2 != null) {
+					player2Label = matchData.player2.name;
+					player2Score = matchData.player2Score;
+					player2Color = getColorForRace(matchData.player2.race);
+					player2ImageName = "/img/icons/" + matchData.player2.race + "-white.png";
+					player2ImageAlt = matchData.player2.race.charAt(0).toUpperCase();
+
+					if (matchData.player2Won) {
+						player2FontWeight = 'bold';
+					}
+				} else {
+					player2Label = getRedirectLabelIfAny(matchData, 2);
+				}
+
+				maxScore = matchData.maxScore;
+				matchDiv = document.createElement("div");
+				matchDiv.className = "match";
+				matchDiv.style.left = `${x}px`;
+				matchDiv.style.top = `${y}px`;
+				matchDiv.innerHTML = `
+					<div class="player" style="background-color: ${player1Color};">
+						<img src="${player1ImageName}" alt="${player1ImageAlt}" style="height: 25px; width: auto;" crossorigin="anonymous" />
+						<span style="font-weight: ${player1FontWeight};">${player1Label}</span>
+						<input id="inputSlot1" type="number" min="0" max="${maxScore}" value="${player1Score}" />
+					</div>
+					<div class="player" style="background-color: ${player2Color};">
+						<img src="${player2ImageName}" alt="${player2ImageAlt}" style="height: 25px; width: auto;" crossorigin="anonymous" />
+						<span style="font-weight: ${player2FontWeight};">${player2Label}</span>
+						<input id="inputSlot2" type="number" min="0" max="${maxScore}" value="${player2Score}" />
+					</div>
+				`;
+
+				inputSlot1 = matchDiv.querySelector('#inputSlot1');
+				matchData.inputSlot1 = inputSlot1;
+				inputSlot1.addEventListener('input', () => {
+					onScoreChanged(matchData, 1);
+				});
+				inputSlot2 = matchDiv.querySelector('#inputSlot2');
+				matchData.inputSlot2 = inputSlot2;
+				inputSlot2.addEventListener('input', () => {
+					onScoreChanged(matchData, 2);
+				});
+				matchData.matchDiv = matchDiv;
+
+				return matchDiv;
+			}
+
+			function createRoundHeader(x, y, text) {
+				roundHeader = document.createElement("div");
+				roundHeader.className = "roundHeader";
+				roundHeader.style.left = `${x}px`;
+				roundHeader.style.top = `${y}px`;
+				roundHeader.innerHTML = `<span>${text}</span>`;
+				return roundHeader;
+			}
+
+			function addRoundHeaders(canvasDiv) {
+				// Set the parents on all the matches now that all the nodes exist
+				for (roundIndex = 0; roundIndex < upperBracket.length; roundIndex++) {
+					x = getSpacingForRoundIndex(roundIndex, true);
+					y = 0;
+					bestOf = upperBracketBestOfs[roundIndex];
+					roundText = getRoundText(roundIndex, true)
+					roundText += ` (Bo${bestOf})`;
+					header = createRoundHeader(x, y, roundText);
+					canvasDiv.appendChild(header);
+				}
+
+				lowerBracketYOffset = upperBracket[0].matches.length * ySpacing + upperBracketSpacing + lowerBracketSpacing / 2;
+				for (roundIndex = 0; roundIndex < lowerBracket.length; roundIndex++) {
+					x = getSpacingForRoundIndex(roundIndex, false);
+					y = lowerBracketYOffset;
+					bestOf = lowerBracketBestOfs[roundIndex];
+					roundText = getRoundText(roundIndex, false);
+					roundText += ` (Bo${bestOf})`;
+					header = createRoundHeader(x, y, roundText);
+					canvasDiv.appendChild(header);
+				}
+			}
+
+			function addHorizontalLine(canvasDiv, x, y, width) {
+				line = document.createElement("div");
+				line.className = "line";
+				line.style.left = `${x}px`;
+				line.style.top = `${y}px`;
+				line.style.width = `${width}px`;
+				line.style.height = `2px`;
+				canvasDiv.appendChild(line);
+			}
+
+			function addVerticalLine(canvasDiv, x, y, height) {
+				line = document.createElement("div");
+				line.className = "line";
+				line.style.left = `${x}px`;
+				line.style.top = `${y}px`;
+				line.style.width = `2px`;
+				line.style.height = `${height}px`;
+				canvasDiv.appendChild(line);
+			}
+
+			function drawOrthLine(canvasDiv, startX, startY, endX, endY) {
+				lineWidth = (endX - startX) / 2;
+				lineHeight = endY - startY;
+				addHorizontalLine(canvasDiv, startX, startY, lineWidth);
+				if (lineHeight >= 0) {
+					addVerticalLine(canvasDiv, startX + lineWidth, startY, lineHeight);
+				} else {
+					lineHeight = -1 * lineHeight + 2;
+					addVerticalLine(canvasDiv, startX + lineWidth, endY, lineHeight);
+				}
+				addHorizontalLine(canvasDiv, startX + lineWidth, endY, lineWidth);
+			}
+
+			function drawConnectorLinesForMatchToTarget(canvasDiv, match, targetMatch, slot) {
+				matchX = match.matchDiv.offsetLeft;
+				matchY = match.matchDiv.offsetTop;
+				matchWidth = match.matchDiv.offsetWidth;
+				matchHeight = match.matchDiv.offsetHeight;
+
+				targetDiv = targetMatch.matchDiv;
+				targetX = targetDiv.offsetLeft;
+				targetY = targetDiv.offsetTop;
+				targetWidth = targetDiv.offsetWidth;
+				targetHeight = targetDiv.offsetHeight;
+
+				lineY = targetY + targetHeight / 2;
+				if (slot == 1) {
+					lineY -= targetHeight / 4;
+				} else {
+					lineY += targetHeight / 4;
+				}
+
+				if (targetMatch.matchId.isUpperBracket == match.matchId.isUpperBracket) {
+					drawOrthLine(canvasDiv, matchX + matchWidth, matchY + matchHeight / 2, targetX, lineY);
+				} else {
+					// If it's in a different bracket, just draw a little indicator at the target
+					lineWidth = xSpacing / 12;
+					addHorizontalLine(canvasDiv, targetX - lineWidth, lineY, lineWidth);
+				}
+			}
+
+			function drawConnectorLinesForMatch(canvasDiv, match) {
+				// Get the target match info
+				advancementInfo = match.advancementInfo;
+				if (advancementInfo.winnerMatch.isUpperBracket) {
+					winnerTargetMatch = upperBracket[advancementInfo.winnerMatch.roundIndex].matches[advancementInfo.winnerMatch.matchIndex];
+				} else {
+					winnerTargetMatch = lowerBracket[advancementInfo.winnerMatch.roundIndex].matches[advancementInfo.winnerMatch.matchIndex];
+				}
+				drawConnectorLinesForMatchToTarget(canvasDiv, match, winnerTargetMatch, advancementInfo.winnerSlot);
+
+				if (advancementInfo.loserMatch != null) {
+					if (advancementInfo.loserMatch.isUpperBracket) {
+						loserTargetMatch = upperBracket[advancementInfo.loserMatch.roundIndex].matches[advancementInfo.loserMatch.matchIndex];
+					} else {
+						loserTargetMatch = lowerBracket[advancementInfo.loserMatch.roundIndex].matches[advancementInfo.loserMatch.matchIndex];
+					}
+					drawConnectorLinesForMatchToTarget(canvasDiv, match, loserTargetMatch, advancementInfo.loserSlot);
+				}
+			}
+
+			function drawConnectorLines(canvasDiv) {
+				roundIndex = 0;
+				for (round of upperBracket) {
+					if (roundIndex < upperBracket.length - 1) {
+						matchIndex = 0;
+						for (match of round.matches) {
+							drawConnectorLinesForMatch(canvasDiv, match);
+							matchIndex++;
+						}
+					}
+					roundIndex++;
+				}
+
+				for (round of lowerBracket) {
+					for (match of round.matches) {
+						drawConnectorLinesForMatch(canvasDiv, match);
+						matchIndex++;
+					}
+				}
+			}
+
+			// Updates the UI for the current upper/lower brackets
+			function updateBracketUi() {
+				// Get the canvas
+				canvasDiv = document.getElementsByClassName('canvasDiv')[0];
+				scrollTop = document.documentElement.scrollTop;
+				scrollLeft = document.documentElement.scrollLeft;
+				canvasDiv.innerHTML = "";
+
+				for (round of upperBracket) {
+					for (match of round.matches) {
+						matchDiv = createMatchUi(match);
+						canvasDiv.appendChild(matchDiv);
+					}
+				}
+
+				for (round of lowerBracket) {
+					for (match of round.matches) {
+						matchDiv = createMatchUi(match);
+						canvasDiv.appendChild(matchDiv);
+					}
+				}
+
+				addRoundHeaders(canvasDiv);
+				drawConnectorLines(canvasDiv);
+
+				document.documentElement.scrollTop = scrollTop;
+				document.documentElement.scrollLeft = scrollLeft;
+			}
+
+			// Updates the parents for nodes this matchData advances to back to this node.
+			// matchData = MatchData, The node to check for advancement info to set parents on
+			function updateParentsForMatch(matchData) {
+				advancementInfo = matchData.advancementInfo;
+				if (advancementInfo.winnerMatch != null) {
+					if (advancementInfo.winnerMatch.isUpperBracket) {
+						round = upperBracket[advancementInfo.winnerMatch.roundIndex];
+
+						if (round == null || typeof round == 'undefined') {
+							console.log('updateParentsForMatch: undefined match info in upper bracket');
+						}
+
+						winningMatchInfo = round.matches[advancementInfo.winnerMatch.matchIndex];
+						winningMatchInfo.parentMatches.push(matchData);
+					} else {
+						round = lowerBracket[advancementInfo.winnerMatch.roundIndex];
+
+						if (round == null || typeof round == 'undefined') {
+							console.log('updateParentsForMatch: undefined match info in lower bracket');
+						}
+
+						winningMatchInfo = round.matches[advancementInfo.winnerMatch.matchIndex];
+						winningMatchInfo.parentMatches.push(matchData);
+					}
+				}
+
+				if (advancementInfo.loserMatch != null) {
+					if (advancementInfo.loserMatch.isUpperBracket) {
+						losingMatchInfo = upperBracket[advancementInfo.loserMatch.roundIndex].matches[advancementInfo.loserMatch.matchIndex];
+						losingMatchInfo.parentMatches.push(matchData);
+					} else {
+						losingMatchInfo = lowerBracket[advancementInfo.loserMatch.roundIndex].matches[advancementInfo.loserMatch.matchIndex];
+						losingMatchInfo.parentMatches.push(matchData);
+					}
+				}
+			}
+
+			function initCanvas() {
+				// Initialize all the rounds in the upper bracket (Includes the grand finals)
+				numUpperBracketRounds = Math.round(Math.log2(players.length)) + 1;
+				if (numUpperBracketRounds != upperBracketBestOfs.length) {
+					console.log("The upper bracket best ofs does not match the calculated number of rounds");
+				}
+				for (roundIndex = 0; roundIndex < numUpperBracketRounds; roundIndex++) {
+					upperBracket.push(new Round(roundIndex, true));
+				}
+
+				// Initialize all the rounds in the lower bracket. There will be 2 rounds for each of the upper
+				// bracket rounds except for the first and last since the first lower bracket round is filled entirely
+				// with upper round players rather than half of them and the last round goes back up to the upper bracket
+				// for the grand finals.
+				numLowerBracketRounds = (numUpperBracketRounds - 1) * 2 - 2;
+				if (numLowerBracketRounds != lowerBracketBestOfs.length) {
+					console.log("The lower bracket best ofs does not match the calculated number of rounds");
+				}
+				for (roundIndex = 0; roundIndex < numLowerBracketRounds; roundIndex++) {
+					lowerBracket.push(new Round(roundIndex, false));
+				}
+
+				// Fill out the upper bracket
+				prevRoundNumMatches = players.length;
+				for (roundIndex = 0; roundIndex < numUpperBracketRounds; roundIndex++) {
+					if (roundIndex != numUpperBracketRounds - 1) {
+						numMatches = Math.floor(prevRoundNumMatches / 2);
+					} else {
+						// We have one more round at the end for the grand finals
+						// since the lower bracket winner plays the upper bracket
+						// winner.
+						numMatches = 1;
+					}
+					for (matchIndex = 0; matchIndex < numMatches; matchIndex++) {
+						player1 = null;
+						player2 = null;
+
+						// We only know who the players are for the first round when initializing.
+						if (roundIndex == 0) {
+							player1 = players[matchIndex * 2];
+							player2 = players[matchIndex * 2 + 1];
+						}
+
+						matchId = new MatchId(roundIndex, matchIndex, true);
+
+						// Where the loser goes depends on the round.
+						// This logic may need to change depending on the tournament
+						loserNextMatchId = null;
+						loserSlot = -1;
+						if (roundIndex == 0) {
+							// For the first round, the M5-M8 losers are the first 2 matches
+							// in the lower bracket and M1-M4 are the second 2 matches
+							loserLowerBracketMatchIndex = (Math.floor(matchIndex / 2) + 2) % 4;
+							loserSlot = (matchIndex % 2 == 0) ? 1 : 2;
+							loserNextMatchId = new MatchId(roundIndex, loserLowerBracketMatchIndex, false);
+						} else if (roundIndex == numUpperBracketRounds - 2 - 1) { // -2 because it's the upper semi final round, -1 because it's 0 based
+							// The losers of the upper semi final round are flipped
+							loserLowerBracketMatchIndex = (matchIndex + 1) % 2;
+							lowerBracketRound = 1 + (roundIndex - 1) * 2;
+							loserSlot = 1;
+							loserNextMatchId = new MatchId(lowerBracketRound, loserLowerBracketMatchIndex, false);
+						} else {
+							// There are 2 lower bracket rounds for each upper bracket round except for the first and last ones
+							// so calculate the lower bracket round to place them in from the upper bracket
+							lowerBracketRound = 1 + (roundIndex - 1) * 2;
+							loserSlot = 1;
+							loserNextMatchIndex = matchIndex; // Match index is the same as upper
+							loserNextMatchId = new MatchId(lowerBracketRound, loserNextMatchIndex, false);
+						}
+
+						// Winners always just go to the next round in the upper bracket, odd on bottom even on top
+						winnerUpperBracketMatchIndex = roundIndex + 1;
+						winnerSlot = (matchIndex % 2 == 0) ? 1 : 2;
+						winnerNextMatchId = new MatchId(roundIndex + 1, Math.floor(matchIndex / 2), true);
+
+						// Make sure the match ids are valid
+						if (winnerNextMatchId.roundIndex >= numUpperBracketRounds) {
+							winnerNextMatchId = null;
+							winnerSlot = -1;
+						}
+
+						if (loserNextMatchId.roundIndex >= numLowerBracketRounds) {
+							loserNextMatchId = null;
+							loserSlot = -1;
+						}
+
+						advancementInfo = new AdvancementInfo(winnerNextMatchId, winnerSlot, loserNextMatchId, loserSlot);
+
+						matchData = new MatchData(matchId, player1, player2, advancementInfo);
+						upperBracket[roundIndex].matches.push(matchData);
+					}
+
+					prevRoundNumMatches = numMatches;
+				}
+
+				// Fill out the lower bracket matches
+				prevRoundNumMatches = upperBracket[0].matches.length;
+				for (roundIndex = 0; roundIndex < numLowerBracketRounds; roundIndex++) {
+					// Every other round in the lower bracket halves the number of matches
+					// since we get players from the upper bracket inbetween each round
+					if (roundIndex % 2 == 0) {
+						numMatches = Math.floor(prevRoundNumMatches / 2);
+					} else {
+						numMatches = prevRoundNumMatches;
+					}
+
+					for (matchIndex = 0; matchIndex < numMatches; matchIndex++) {
+						matchId = new MatchId(roundIndex, matchIndex, false);
+
+						// Winner always moves to the next round in the lower bracket except for the last
+						// one in which case they move to the grand final in the upper bracket
+
+						if (roundIndex != numLowerBracketRounds - 1) {
+							nextMatchIndex = (roundIndex % 2 == 0) ? matchIndex : Math.floor(matchIndex / 2);
+							winnerNextMatchId = new MatchId(roundIndex + 1, nextMatchIndex, false);
+
+							if (roundIndex % 2 == 0) {
+								winnerNextMatchSlot = 2;
+							} else {
+								winnerNextMatchSlot = (matchIndex % 2 == 0) ? 1 : 2;
+							}
+						} else {
+							winnerNextMatchId = new MatchId(numUpperBracketRounds - 1, 0, true);
+							winnerNextMatchSlot = 2;
+						}
+
+						// Losers are out from here
+						lowerNextMatchId = null;
+						loserNextMatchSlot = 1; // doesn't matter
+						advancementInfo = new AdvancementInfo(winnerNextMatchId, winnerNextMatchSlot, lowerNextMatchId, loserNextMatchSlot);
+
+						matchData = new MatchData(matchId, null, null, advancementInfo);
+						lowerBracket[roundIndex].matches.push(matchData);
+					}
+
+					prevRoundNumMatches = numMatches;
+				}
+
+				// Set the parents on all the matches now that all the nodes exist
+				for (roundIndex = 0; roundIndex < upperBracket.length; roundIndex++) {
+					for (matchIndex = 0; matchIndex < upperBracket[roundIndex].matches.length; matchIndex++) {
+						matchData = upperBracket[roundIndex].matches[matchIndex];
+						updateParentsForMatch(matchData);
+					}
+				}
+				for (roundIndex = 0; roundIndex < lowerBracket.length; roundIndex++) {
+					for (matchIndex = 0; matchIndex < lowerBracket[roundIndex].matches.length; matchIndex++) {
+						matchData = lowerBracket[roundIndex].matches[matchIndex];
+						updateParentsForMatch(matchData);
+					}
+				}
+
+				updateBracketUi();
+			}
+
+			initCanvas();
+		</script>
+	</div>
+</section>
